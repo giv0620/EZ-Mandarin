@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EZ Mandarin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <label class="switch">
+  <input type="checkbox" id="darkToggle" onchange="toggleDarkMode()">
+  <span class="slider"></span>
+</label>
+
+<!-- 🟦 HOME -->
+
+<div id="homePage">
+  <h1>EZ Mandarin</h1>
+  <p>Learn Mandarin the Easy Way</p>
+
+  <div class="button-container">
+    <button onclick="startFlashcard('fruits')">Fruits</button>
+    <button onclick="startFlashcard('jobs')">Jobs</button>
+    <button onclick="startFlashcard('foods')">Foods</button>
+    <button onclick="startFlashcard('countries')">Countries</button>
+  </div>
+
+  <div class="button-container">
+    <button onclick="startFlashcard('hsk1')">HSK 1</button>
+    <button onclick="startFlashcard('hsk2')">HSK 2</button>
+    <button onclick="startFlashcard('hsk3')">HSK 3</button>
+    <button onclick="startFlashcard('hsk4')">HSK 4</button>
+    <button onclick="startFlashcard('hsk5')">HSK 5</button>
+  </div>
+
+  <br>
+  <button onclick="goToQuiz()">Ready for Quiz 🔥</button>
+</div>
+
+<!-- 🟨 FLASHCARD -->
+
+<div id="flashcardPage" style="display:none;">
+  <img id="cardImage" src="">
+  <h2 id="hanzi"></h2>
+  <p id="pinyin"></p>
+  <p id="arti"></p>
+
+  <div class="button-container" id="flashcardButtons"></div>
+</div>
+
+<!-- 🟥 QUIZ LEVEL SELECT -->
+
+<div id="quizPage" style="display:none;">
+  <h2>WHAT’S YOUR LEVEL?</h2>
+
+  <div class="button-container">
+    <button onclick="startQuiz('hsk1')">HSK 1</button>
+    <button onclick="startQuiz('hsk2')">HSK 2</button>
+    <button onclick="startQuiz('hsk3')">HSK 3</button>
+    <button onclick="startQuiz('hsk4')">HSK 4</button>
+    <button onclick="startQuiz('hsk5')">HSK 5</button>
+  </div>
+
+  <br>
+  <button onclick="goHome()">Back to Home</button>
+</div>
+
+<!-- 🧠 QUIZ QUESTION -->
+<div id="quizQuestionPage" style="display:none;">
+  <h2 id="timerText">Time: 00:00</h2>
+
+  <!-- 🔥 PROGRESS -->
+  <h3 id="progressText"></h3>
+  <div id="progressBarContainer">
+    <div id="progressBar"></div>
+  </div>
+
+  <h3 id="questionText"></h3>
+  <div id="options"></div>
+
+  <div class="button-container" id="quizButtons"></div>
+</div>
+<!-- 🟨 CONFIRM SUBMIT -->
+
+<div id="confirmPage" style="display:none;">
+  <h2>Are you sure you want to submit?</h2>
+
+  <div class="button-container">
+    <button onclick="backToQuiz()">Check Again</button>
+    <button onclick="submitQuiz()">Submit</button>
+  </div>
+</div>
+
+<!-- 🟩 RESULT -->
+
+<div id="resultPage" style="display:none;">
+  <h2>Your Score</h2>
+  <h1 id="scoreText"></h1>
+
+  <div class="button-container">
+    <button onclick="showReview()">See Review</button>
+    <button onclick="goHome()">Back to Home</button>
+  </div>
+</div>
+
+<!-- 🟪 REVIEW -->
+
+<div id="reviewPage" style="display:none;">
+  <h2>Review Answers</h2>
+
+  <div id="reviewContainer"></div>
+
+  <br>
+  <button onclick="goHome()">Back to Home</button>
+</div>
+
+<script src="script.js"></script>
+
+<!-- 🎉 CONFETTI LIBRARY -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</body>
+</html>

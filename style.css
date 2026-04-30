@@ -1,0 +1,237 @@
+#progressBarContainer {
+  width: 100%;
+  height: 10px;
+  background: #ddd;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+#progressBar {
+  height: 10px;
+  width: 0%;
+  background: #007aff;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+
+  background: linear-gradient(
+    135deg,
+    #ff7eb3,
+    #ff758c,
+    #ffb199,
+    #6dd5ed,
+    #5b86e5
+  );
+
+  background-size: 300% 300%;
+  animation: gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Container utama */
+#homePage, #flashcardPage, #quizPage,
+#quizQuestionPage, #resultPage, #reviewPage, #confirmPage {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 30px;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+p {
+  color: #555;
+}
+
+button {
+  padding: 12px 20px;
+  margin: 6px;
+  border-radius: 14px;
+  border: none;
+
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  cursor: pointer;
+
+  box-shadow: 0 0 10px rgba(0,114,255,0.5);
+  transition: 0.3s;
+}
+
+button:hover {
+  box-shadow: 0 0 20px rgba(0,114,255,0.9);
+  transform: scale(1.05);
+}
+
+#options button {
+  width: 100%;
+  margin: 10px 0;
+  background: #f0f3ff;
+  color: #333;
+  border-radius: 12px;
+}
+
+#options button:hover {
+  background: #dbe4ff;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#hanzi {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+#pinyin {
+  font-size: 18px;
+  color: #888;
+}
+
+#arti {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#options button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  background: #e6f0ff;
+  color: #333;
+}
+
+#options button:hover {
+  background: #cce0ff;
+}
+
+#timerText {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#progressBarContainer {
+  width: 100%;
+  height: 8px;
+  background: #eee;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+#progressBar {
+  height: 8px;
+  width: 0%;
+  background: #007aff;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+.switch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  width: 50px;
+  height: 25px;
+  background: #ccc;
+  border-radius: 20px;
+  display: block;
+  cursor: pointer;
+}
+
+.slider::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2.5px;
+  left: 5px;
+  transition: 0.3s;
+}
+
+input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+body.dark {
+  background: radial-gradient(circle at 20% 30%, #4a017e, transparent),
+              radial-gradient(circle at 80% 20%, #001f4d, transparent),
+              radial-gradient(circle at 70% 80%, #6f328d, transparent),
+              linear-gradient(135deg, #000000, #0a0a0a);
+
+  background-size: 200% 200%;
+  animation: gradientMoveDark 8s ease infinite;
+
+  color: white;
+}
+
+body.dark #homePage,
+body.dark #flashcardPage,
+body.dark #quizPage,
+body.dark #quizQuestionPage,
+body.dark #resultPage,
+body.dark #reviewPage,
+body.dark #confirmPage {
+  background: rgba(20, 20, 30, 0.85);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+#homePage:hover,
+#flashcardPage:hover,
+#quizPage:hover,
+#quizQuestionPage:hover,
+#resultPage:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+  transition: 0.3s;
+}
+body.dark::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(255,0,150,0.1), transparent);
+  pointer-events: none;
+}
+@keyframes gradientMoveDark {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+#cardImage {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
