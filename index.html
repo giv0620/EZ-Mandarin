@@ -14,36 +14,57 @@
   <span class="slider"></span>
 </label>
 
-<!-- 🟦 HOME -->
+<!-- � LANDING PAGE -->
+<div id="landingPage" style="display:flex;">
+  <div class="landing-container">
+    <div class="landing-content">
+      <h1 class="landing-title">EZ Mandarin <span class="landing-panda">🐼</span></h1>
+      <p class="landing-tagline">Learning Mandarin in the Easiest Way 🏮</p>
+      <button class="landing-btn" onclick="startLearning()">Start Learning →</button>
+    </div>
+  </div>
+</div>
 
-<div id="homePage">
-  <h1>EZ Mandarin</h1>
-  <p>Learn Mandarin the Easy Way</p>
+<!-- �🟦 HOME -->
 
-  <div class="button-container">
-    <button onclick="startFlashcard('fruits')">Fruits</button>
-    <button onclick="startFlashcard('jobs')">Jobs</button>
-    <button onclick="startFlashcard('foods')">Foods</button>
-    <button onclick="startFlashcard('countries')">Countries</button>
+<div id="homePage" style="display:none;">
+  <h1>EZ Mandarin <span class="title-emoji">🐼✨</span></h1>
+  <p class="home-subtitle">Learning Mandarin in the Easiest Way</p>
+
+  <div class="button-group">
+    <p class="section-subtitle">Choose a flashcard theme</p>
+    <div class="button-container home-buttons">
+      <button class="btn-pink" onclick="startFlashcard('fruits')">🍎 Fruits</button>
+      <button class="btn-mint" onclick="startFlashcard('jobs')">🧑‍💼 Jobs</button>
+      <button class="btn-peach" onclick="startFlashcard('foods')">🍜 Foods</button>
+      <button class="btn-lavender" onclick="startFlashcard('countries')">🌍 Countries</button>
+    </div>
   </div>
 
-  <div class="button-container">
-    <button onclick="startFlashcard('hsk1')">HSK 1</button>
-    <button onclick="startFlashcard('hsk2')">HSK 2</button>
-    <button onclick="startFlashcard('hsk3')">HSK 3</button>
-    <button onclick="startFlashcard('hsk4')">HSK 4</button>
-    <button onclick="startFlashcard('hsk5')">HSK 5</button>
+  <div class="button-group">
+    <p class="section-subtitle">Practice your HSK levels</p>
+    <div class="button-container home-buttons">
+      <button class="btn-soft-blue" onclick="startFlashcard('hsk1')">HSK 1</button>
+      <button class="btn-soft-blue" onclick="startFlashcard('hsk2')">HSK 2</button>
+      <button class="btn-soft-blue" onclick="startFlashcard('hsk3')">HSK 3</button>
+      <button class="btn-soft-blue" onclick="startFlashcard('hsk4')">HSK 4</button>
+      <button class="btn-soft-blue" onclick="startFlashcard('hsk5')">HSK 5</button>
+    </div>
   </div>
 
   <br>
-  <button onclick="goToQuiz()">Ready for Quiz 🔥</button>
+  <button class="quiz-button" onclick="goToQuiz()">Ready for Quiz 🔥</button>
 </div>
+<img id="homePandaGif" src="./panda.gif" alt="Decorative panda" aria-hidden="true" />
+<img id="lampionGif" src="./lampion.gif" alt="Decorative lampion" aria-hidden="true" />
 
 <!-- 🟨 FLASHCARD -->
 
 <div id="flashcardPage" style="display:none;">
+  <button id="closeBtn" onclick="goHome()">×</button>
   <img id="cardImage" src="">
   <h2 id="hanzi"></h2>
+  <button id="speakerBtn" onclick="speakHanzi()">🔊</button>
   <p id="pinyin"></p>
   <p id="arti"></p>
 
@@ -56,11 +77,11 @@
   <h2>WHAT’S YOUR LEVEL?</h2>
 
   <div class="button-container">
-    <button onclick="startQuiz('hsk1')">HSK 1</button>
-    <button onclick="startQuiz('hsk2')">HSK 2</button>
-    <button onclick="startQuiz('hsk3')">HSK 3</button>
-    <button onclick="startQuiz('hsk4')">HSK 4</button>
-    <button onclick="startQuiz('hsk5')">HSK 5</button>
+    <button onclick="showQuizCountdown('hsk1')">HSK 1</button>
+    <button onclick="showQuizCountdown('hsk2')">HSK 2</button>
+    <button onclick="showQuizCountdown('hsk3')">HSK 3</button>
+    <button onclick="showQuizCountdown('hsk4')">HSK 4</button>
+    <button onclick="showQuizCountdown('hsk5')">HSK 5</button>
   </div>
 
   <br>
@@ -114,6 +135,13 @@
 
   <br>
   <button onclick="goHome()">Back to Home</button>
+</div>
+
+<div id="countdownOverlay" style="display:none;">
+  <div class="countdown-box">
+    <p>Are you ready?</p>
+    <div id="countdownNumber">3</div>
+  </div>
 </div>
 
 <script src="script.js"></script>

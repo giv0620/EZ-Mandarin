@@ -138,7 +138,6 @@ function updateButtons() {
 
   if (currentIndex === 0) {
     btnContainer.innerHTML = `
-      <button onclick="goHome()">Back to Home</button>
       <button onclick="nextCard()">Next</button>
     `;
   }
@@ -146,7 +145,6 @@ function updateButtons() {
   else if (currentIndex === total - 1) {
     btnContainer.innerHTML = `
       <button onclick="prevCard()">Back</button>
-      <button onclick="goHome()">Back to Home</button>
     `;
   }
 
@@ -183,6 +181,11 @@ function startFlashcard(category) {
   document.getElementById("flashcardPage").style.display = "block";
 }
 
+function startLearning() {
+  document.getElementById("landingPage").style.display = "none";
+  document.getElementById("homePage").style.display = "block";
+}
+
 function goHome() {
   // tampilkan home
   document.getElementById("homePage").style.display = "block";
@@ -203,6 +206,27 @@ function goToQuiz() {
   document.getElementById("quizPage").style.display = "block";
 }
 
+function showQuizCountdown(level) {
+  const overlay = document.getElementById("countdownOverlay");
+  const numberEl = document.getElementById("countdownNumber");
+
+  if (overlay.style.display === "flex") return;
+
+  overlay.style.display = "flex";
+  numberEl.textContent = "3";
+
+  let count = 3;
+  const intervalId = setInterval(() => {
+    count -= 1;
+    if (count > 0) {
+      numberEl.textContent = String(count);
+    } else {
+      clearInterval(intervalId);
+      overlay.style.display = "none";
+      startQuiz(level);
+    }
+  }, 1000);
+}
 
 const quizData = {
   hsk1: [
@@ -776,4 +800,12 @@ function startTimer() {
 }
 function toggleDarkMode() {
   document.body.classList.toggle("dark");
+}
+
+function speakHanzi() {
+  const hanzi = document.getElementById('hanzi').textContent;
+  const utterance = new SpeechSynthesisUtterance(hanzi);
+  utterance.lang = 'zh-CN';
+  utterance.rate = 0.5;
+  speechSynthesis.speak(utterance);
 }
