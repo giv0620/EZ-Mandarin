@@ -128,7 +128,7 @@
 
 <!-- 🟨 HSK MAP PAGE -->
 <div id="hskMapPage" style="display:none;">
-  <button class="back-btn" onclick="goHome()">← Back</button>
+<button class="back-btn" onclick="document.getElementById('hskMapPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">← Back</button>
   <h1 id="hskMapTitle" style="font-size: 32px; margin-bottom: 40px; color: #8B0000;">HSK 1</h1>
   
   <div class="hsk-path-container">
@@ -194,7 +194,7 @@
 <!-- 🟨 FLASHCARD -->
 
 <div id="flashcardPage" style="display:none;">
-  <button id="closeBtn" onclick="document.getElementById('flashcardPage').style.display='none'; document.getElementById('flashcardMenuPage').style.display='block';">×</button>
+  <button id="closeBtn" onclick="document.getElementById('flashcardPage').style.display='none'; if(flashcardOrigin === 'step') { document.getElementById('stepChoicePage').style.display='block'; } else { document.getElementById('flashcardMenuPage').style.display='block'; }">×</button>
   <img id="cardImage" src="">
   <h2 id="hanzi"></h2>
   <button id="speakerBtn" onclick="speakHanzi()">🔊</button>
