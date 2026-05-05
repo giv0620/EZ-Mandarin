@@ -24,55 +24,56 @@
     <div class="landing-content">
       <h1 class="landing-title"><img src="logo.png" alt="EZ Mandarin logo" style="width:180px; object-fit:contain;"></h1>
       <p class="landing-tagline">Learning Mandarin in the Easiest Way 🏮</p>
-      <button class="landing-btn animate-bounce delay-1" onclick="document.getElementById('landingPage').style.display='none'; document.getElementById('onboardingPage').style.display='block';">Start Learning →</button>
+      <button class="landing-btn animate-bounce delay-1" onclick="startLearning();">Start Learning →</button>
     </div>
   </div>
 </div>
 
 <div id="onboardingPage" style="display:none;">
-  <h1>Apakah sebelumnya kamu sudah pernah belajar Bahasa Mandarin?</h1>
+  <h1>Have you ever studied Mandarin before?</h1>
   <div class="button-container onboarding-buttons">
-    <button class="animate-bounce delay-1" onclick="buttonPop(this); document.getElementById('onboardingPage').style.display='none'; document.getElementById('ajakBelajarPage').style.display='block';">Belum</button>
-    <button class="animate-bounce delay-2" onclick="buttonPop(this); document.getElementById('onboardingPage').style.display='none'; document.getElementById('durasiPage').style.display='block';">Sudah</button>
+    <button class="animate-bounce delay-1" onclick="buttonPop(this); document.getElementById('onboardingPage').style.display='none'; document.getElementById('ajakBelajarPage').style.display='block';">Not Yet</button>
+    <button class="animate-bounce delay-2" onclick="buttonPop(this); document.getElementById('onboardingPage').style.display='none'; document.getElementById('durasiPage').style.display='block';">Yes</button>
   </div>
 </div>
 
 <div id="ajakBelajarPage" style="display:none;">
-  <h1>Ayo Belajar Sekarang! 🎉</h1>
-<button class="animate-bounce delay-1" onclick="buttonPop(this); document.getElementById('ajakBelajarPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">Mulai Belajar</button>
+  <h1>Lets Learn Now! 🎉</h1>
+<button class="animate-bounce delay-1" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('ajakBelajarPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">Start Learning</button>
 </div>
 
 <div id="durasiPage" style="display:none;">
-  <h1>Berapa lama kamu sudah belajar Bahasa Mandarin?</h1>
+  <h1>How long have you been studying Mandarin?</h1>
   <div class="button-container onboarding-buttons">
-    <button class="animate-bounce delay-1" onclick="buttonPop(this); document.getElementById('durasiPage').style.display='none'; document.getElementById('levelCheckPage').style.display='block';">1-3 bulan</button>
-    <button class="animate-bounce delay-2" onclick="buttonPop(this); document.getElementById('durasiPage').style.display='none'; document.getElementById('levelCheckPage').style.display='block';">4-7 bulan</button>
-    <button class="animate-bounce delay-3" onclick="buttonPop(this); document.getElementById('durasiPage').style.display='none'; document.getElementById('levelCheckPage').style.display='block';">7-12 bulan</button>
-    <button class="animate-bounce delay-4" onclick="buttonPop(this); document.getElementById('durasiPage').style.display='none'; document.getElementById('levelCheckPage').style.display='block';">&gt;1 tahun</button>
+    <button class="animate-bounce delay-1" onclick="buttonPop(this); document.getElementById('durasiPage').style.display='none'; document.getElementById('levelCheckPage').style.display='block';">1-3 months</button>
+    <button class="animate-bounce delay-2" onclick="buttonPop(this); document.getElementById('durasiPage').style.display='none'; document.getElementById('levelCheckPage').style.display='block';">4-7 months</button>
+    <button class="animate-bounce delay-3" onclick="buttonPop(this); document.getElementById('durasiPage').style.display='none'; document.getElementById('levelCheckPage').style.display='block';">7-12 months</button>
+    <button class="animate-bounce delay-4" onclick="buttonPop(this); document.getElementById('durasiPage').style.display='none'; document.getElementById('levelCheckPage').style.display='block';">&gt;1 year</button>
   </div>
 </div>
 
 <div id="levelCheckPage" style="display:none;">
-  <h1>Apakah kamu sudah tau level Mandarin mu?</h1>
+  <h1>Have you taken the HSK exam?</h1>
   <div class="button-container onboarding-buttons level-buttons">
-    <button class="animate-bounce delay-1" onclick="buttonPop(this); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 1</button>
-<button class="animate-bounce delay-2" onclick="buttonPop(this); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 2</button>
-<button class="animate-bounce delay-3" onclick="buttonPop(this); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 3</button>
-<button class="animate-bounce delay-4" onclick="buttonPop(this); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 4</button>
-<button class="animate-bounce delay-5" onclick="buttonPop(this); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 5</button>
-    <button class="animate-bounce delay-6" onclick="buttonPop(this); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('placementPage').style.display='block';">Belum Tau</button>
+<button class="animate-bounce delay-1" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 1</button>
+<button class="animate-bounce delay-2" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 2</button>
+<button class="animate-bounce delay-3" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 3</button>
+<button class="animate-bounce delay-4" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 4</button>
+<button class="animate-bounce delay-5" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 5</button>
+    <button class="animate-bounce delay-6" onclick="buttonPop(this); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('placementPage').style.display='block';">No, I Haven't</button>
   </div>
 </div>
 
 <div id="placementPage" style="display:none;">
-  <h1>Coba jawab soal ini!</h1>
+  <h1>Answer this question!</h1>
   <p class="placement-question">我喜欢踢__.</p>
   <div class="button-container onboarding-buttons placement-buttons">
-    <button id="placementA" class="choice-button animate-bounce delay-1" onclick="buttonPop(this); confetti({ particleCount: 45, spread: 70, origin: { y: 0.6 } }); const buttons=document.querySelectorAll('#placementPage .choice-button'); buttons.forEach(b=>b.disabled=true); this.style.background='#4caf50'; setTimeout(()=>document.getElementById('placementContinue').style.display='inline-flex',2000);">A. 足球</button>
-    <button class="choice-button animate-bounce delay-2" onclick="buttonPop(this); const buttons=document.querySelectorAll('#placementPage .choice-button'); buttons.forEach(b=>{b.disabled=true; if(b.id==='placementA'){b.style.background='#4caf50';}}); this.style.background='#f44336'; this.classList.add('shake'); setTimeout(()=>this.classList.remove('shake'),240); setTimeout(()=>document.getElementById('placementContinue').style.display='inline-flex',2000);">B. 篮球</button>
-    <button class="choice-button animate-bounce delay-3" onclick="buttonPop(this); const buttons=document.querySelectorAll('#placementPage .choice-button'); buttons.forEach(b=>{b.disabled=true; if(b.id==='placementA'){b.style.background='#4caf50';}}); this.style.background='#f44336'; this.classList.add('shake'); setTimeout(()=>this.classList.remove('shake'),240); setTimeout(()=>document.getElementById('placementContinue').style.display='inline-flex',2000);">C. 羽毛球</button>
+    <button id="placementA" class="choice-button animate-bounce delay-1" onclick="buttonPop(this); confetti({ particleCount: 45, spread: 70, origin: { y: 0.6 } }); const buttons=document.querySelectorAll('#placementPage .choice-button'); buttons.forEach(b=>b.disabled=true); this.style.background='#4caf50'; document.getElementById('placementContinue').innerText='You can start from HSK 2/3 →'; setTimeout(()=>document.getElementById('placementContinue').style.display='inline-flex',2000);">A. 足球</button>
+<button class="choice-button animate-bounce delay-2" onclick="buttonPop(this); const buttons=document.querySelectorAll('#placementPage .choice-button'); buttons.forEach(b=>{b.disabled=true; if(b.id==='placementA'){b.style.background='#4caf50';}}); this.style.background='#f44336'; this.classList.add('shake'); setTimeout(()=>this.classList.remove('shake'),240); document.getElementById('placementContinue').innerText='You can start from HSK 1 →'; setTimeout(()=>document.getElementById('placementContinue').style.display='inline-flex',2000);">B. 篮球</button>
+
+<button class="choice-button animate-bounce delay-3" onclick="buttonPop(this); const buttons=document.querySelectorAll('#placementPage .choice-button'); buttons.forEach(b=>{b.disabled=true; if(b.id==='placementA'){b.style.background='#4caf50';}}); this.style.background='#f44336'; this.classList.add('shake'); setTimeout(()=>this.classList.remove('shake'),240); document.getElementById('placementContinue').innerText='You can start from HSK 1 →'; setTimeout(()=>document.getElementById('placementContinue').style.display='inline-flex',2000);">C. 羽毛球</button>
   </div>
- <button id="placementContinue" class="landing-btn" style="display:none; margin-top:24px;" onclick="buttonPop(this); document.getElementById('placementPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">Lanjut ke Belajar →</button>
+ <button id="placementContinue" class="landing-btn" style="display:none; margin-top:24px;" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('placementPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">You can start from HSK 2/3 →</button>
 </div>
 
 <!-- �🟦 HOME -->
@@ -97,7 +98,7 @@
   </div>
 
   <br>
-  <button class="quiz-button quiz-button-full" onclick="goToQuiz()">Ready for Quiz? CLICK HERE!</button>
+  <button class="quiz-button quiz-button-full" onclick="goToQuiz()">Test Your Mandarin Level? CLICK HERE!</button>
    <div id="badgeSection" style="margin-top: 20px;">
     <p class="section-subtitle" style="color:#f31313c2; font-weight:bold;">🎖️ Your Badges</p>
     <div id="badgeContainer" style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:8px;">
@@ -109,14 +110,19 @@
 
 <!-- 🟨 FLASHCARD MENU -->
 <div id="flashcardMenuPage" style="display:none;">
-<button class="close-btn" onclick="document.getElementById('flashcardMenuPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">×</button>
-  <h1 style="font-size: 32px; margin-bottom: 24px; color: #8B0000;">FLASHCARD</h1>
-  
+  <button class="close-btn" onclick="document.getElementById('flashcardMenuPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">×</button>
+  <h1 style="font-size: 32px; margin-bottom: 8px; color: #8B0000;">FLASHCARD</h1>
+  <p style="color:#888; font-size:14px; margin-bottom:24px;">Choose a category to practice!</p>
+
   <div class="flashcard-menu-grid">
     <button class="flashcard-category-card btn-pink" onclick="startFlashcard('fruits')"><span class="category-emoji">🍎</span><span class="category-name">Fruits</span></button>
     <button class="flashcard-category-card btn-mint" onclick="startFlashcard('jobs')"><span class="category-emoji">👨‍💼</span><span class="category-name">Jobs</span></button>
     <button class="flashcard-category-card btn-peach" onclick="startFlashcard('foods')"><span class="category-emoji">🍜</span><span class="category-name">Foods</span></button>
     <button class="flashcard-category-card btn-lavender" onclick="startFlashcard('countries')"><span class="category-emoji">🌍</span><span class="category-name">Countries</span></button>
+    <button class="flashcard-category-card btn-yellow" onclick="startFlashcard('animals')"><span class="category-emoji">🐼</span><span class="category-name">Animals</span></button>
+    <button class="flashcard-category-card btn-sky" onclick="startFlashcard('colors')"><span class="category-emoji">🎨</span><span class="category-name">Colors</span></button>
+    <button class="flashcard-category-card btn-green" onclick="startFlashcard('vegetables')"><span class="category-emoji">🥦</span><span class="category-name">Vegetables</span></button>
+    <button class="flashcard-category-card btn-orange" onclick="startFlashcard('transportation')"><span class="category-emoji">🚗</span><span class="category-name">Transportation</span></button>
   </div>
 </div>
 
@@ -188,7 +194,7 @@
 <!-- 🟨 FLASHCARD -->
 
 <div id="flashcardPage" style="display:none;">
-  <button id="closeBtn" onclick="goHome()">×</button>
+  <button id="closeBtn" onclick="document.getElementById('flashcardPage').style.display='none'; document.getElementById('flashcardMenuPage').style.display='block';">×</button>
   <img id="cardImage" src="">
   <h2 id="hanzi"></h2>
   <button id="speakerBtn" onclick="speakHanzi()">🔊</button>

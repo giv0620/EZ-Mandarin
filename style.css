@@ -247,7 +247,7 @@ body {
 }
 
 #onboardingPage, #ajakBelajarPage, #durasiPage, #levelCheckPage, #placementPage {
-  background: linear-gradient(145deg, rgba(255, 234, 210, 0.96), rgba(255, 245, 220, 0.95));
+  background: linear-gradient(145deg, rgba(255, 234, 210, 0.96), rgba(255, 245, 220, 0.95)) !important;
   border-color: rgba(201, 168, 76, 0.55);
 }
 
@@ -515,35 +515,41 @@ button:hover {
 }
 
 .flashcard-category-card {
-  width: 120px;
-  height: 120px;
-  border-radius: 16px;
+  border-radius: 20px;
+  padding: 20px 10px;
   border: none;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 10px 24px rgba(149, 157, 209, 0.15);
-  font-weight: 600;
-  color: white;
+  gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
 .flashcard-category-card:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 15px 35px rgba(149, 157, 209, 0.25);
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
 }
 
-.flashcard-category-card .category-emoji {
-  font-size: 36px;
-  display: block;
+.category-emoji {
+  font-size: 42px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
-.flashcard-category-card .category-name {
-  font-size: 16px;
-  display: block;
+.category-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Override warna teks untuk card terang */
+.btn-yellow .category-name,
+.btn-orange .category-name {
+  color: #4a2c00;
+  text-shadow: none;
 }
 
 #homePandaGif {
@@ -1261,5 +1267,85 @@ body.dark .path-line {
   .grammar-title {
     font-size: 22px;
   }
+
+  /* Sembunyikan dekorasi di mobile */
+  #homePandaGif, #lampionGif {
+    display: none;
+  }
 }
 
+.btn-yellow {
+  background: linear-gradient(135deg, #f9d423, #f5a623);
+  color: #4a2c00;
+}
+
+.btn-sky {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+}
+
+.btn-green {
+  background: linear-gradient(135deg, #56ab2f, #a8e063);
+  color: white;
+}
+
+.btn-orange {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+  color: #4a2c00;
+}
+
+/* Warna untuk flashcard menu */
+.flashcard-category-card.btn-pink {
+  background: linear-gradient(135deg, #ff6ea0, #ff2d72);
+}
+
+.flashcard-category-card.btn-mint {
+  background: linear-gradient(135deg, #4cb17a, #2e8b57);
+}
+
+.flashcard-category-card.btn-peach {
+  background: linear-gradient(135deg, #ff964f, #ff6a1a);
+}
+
+.flashcard-category-card.btn-lavender {
+  background: linear-gradient(135deg, #8f6ad8, #6a49c7);
+}
+
+.flashcard-category-card.btn-yellow {
+  background: linear-gradient(135deg, #f9d423, #f5a623);
+}
+
+.flashcard-category-card.btn-sky {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+
+.flashcard-category-card.btn-green {
+  background: linear-gradient(135deg, #56ab2f, #a8e063);
+}
+
+.flashcard-category-card.btn-orange {
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+}
+
+#onboardingPage, #ajakBelajarPage, #durasiPage, #levelCheckPage, #placementPage {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 90% !important;
+  max-width: 500px !important;
+  margin: 0 !important;
+  z-index: 1000;
+}
+
+#onboardingPage, #ajakBelajarPage, #durasiPage, #levelCheckPage, #placementPage {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 90% !important;
+  max-width: 500px !important;
+  margin: 0 !important;
+  z-index: 1000;
+  border: 1px solid rgba(201, 168, 76, 0.55) !important;
+}

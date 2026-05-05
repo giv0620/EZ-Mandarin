@@ -51,6 +51,58 @@ const flashcards = {
     { hanzi: "英国", pinyin: "yīngguó", arti: "United Kingdom", image:"https://cdn-icons-png.flaticon.com/128/555/555417.png" }
   ],
 
+  colors: [
+  { hanzi: "红色", pinyin: "hóngsè", arti: "Red", image:"https://cdn-icons-png.flaticon.com/128/14035/14035711.png" },
+  { hanzi: "蓝色", pinyin: "lánsè", arti: "Blue", image:"https://cdn-icons-png.flaticon.com/128/10037/10037390.png" },
+  { hanzi: "绿色", pinyin: "lǜsè", arti: "Green", image:"https://cdn-icons-png.flaticon.com/128/14035/14035769.png" },
+  { hanzi: "黄色", pinyin: "huángsè", arti: "Yellow", image:"https://cdn-icons-png.flaticon.com/128/14026/14026175.png" },
+  { hanzi: "黑色", pinyin: "hēisè", arti: "Black", image:"https://cdn-icons-png.flaticon.com/128/0/14.png" },
+  { hanzi: "白色", pinyin: "báisè", arti: "White", image:"https://cdn-icons-png.flaticon.com/128/16/16666.png" },
+  { hanzi: "紫色", pinyin: "zǐsè", arti: "Purple", image:"https://cdn-icons-png.flaticon.com/128/12723/12723075.png" },
+  { hanzi: "橙色", pinyin: "chéngsè", arti: "Orange", image:"https://cdn-icons-png.flaticon.com/128/10037/10037411.png" },
+  { hanzi: "粉色", pinyin: "fěnsè", arti: "Pink", image:"https://cdn-icons-png.flaticon.com/128/15617/15617940.png" },
+  { hanzi: "灰色", pinyin: "huīsè", arti: "Grey", image:"https://cdn-icons-png.flaticon.com/128/15631/15631406.png" }
+],
+
+transportation: [
+  { hanzi: "车", pinyin: "chē", arti: "Car", image:"https://cdn-icons-png.flaticon.com/128/3097/3097180.png" },
+  { hanzi: "公交车", pinyin: "gōngjiāochē", arti: "Bus", image:"https://cdn-icons-png.flaticon.com/128/416/416597.png" },
+  { hanzi: "地铁", pinyin: "dìtiě", arti: "Subway", image:"https://cdn-icons-png.flaticon.com/128/1034/1034693.png" },
+  { hanzi: "火车", pinyin: "huǒchē", arti: "Train", image:"https://cdn-icons-png.flaticon.com/128/1702/1702305.png" },
+  { hanzi: "飞机", pinyin: "fēijī", arti: "Airplane", image:"https://cdn-icons-png.flaticon.com/128/19030/19030949.png" },
+  { hanzi: "自行车", pinyin: "zìxíngchē", arti: "Bicycle", image:"https://cdn-icons-png.flaticon.com/128/9842/9842386.png" },
+  { hanzi: "摩托车", pinyin: "mótuōchē", arti: "Motorcycle", image:"https://cdn-icons-png.flaticon.com/128/1768/1768214.png" },
+  { hanzi: "出租车", pinyin: "chūzūchē", arti: "Taxi", image:"https://cdn-icons-png.flaticon.com/128/5900/5900437.png" },
+  { hanzi: "船", pinyin: "chuán", arti: "Boat", image:"https://cdn-icons-png.flaticon.com/128/1397/1397519.png" },
+  { hanzi: "高铁", pinyin: "gāotiě", arti: "High-speed train", image:"https://cdn-icons-png.flaticon.com/128/9389/9389700.png" }
+],
+
+animals: [
+  { hanzi: "狗", pinyin: "gǒu", arti: "Dog", image:"https://cdn-icons-png.flaticon.com/128/1998/1998627.png" },
+  { hanzi: "猫", pinyin: "māo", arti: "Cat", image:"https://cdn-icons-png.flaticon.com/128/6988/6988878.png" },
+  { hanzi: "鸟", pinyin: "niǎo", arti: "Bird", image:"https://cdn-icons-png.flaticon.com/128/7441/7441358.png" },
+  { hanzi: "鱼", pinyin: "yú", arti: "Fish", image:"https://cdn-icons-png.flaticon.com/128/877/877270.png" },
+  { hanzi: "马", pinyin: "mǎ", arti: "Horse", image:"https://cdn-icons-png.flaticon.com/128/9537/9537923.png" },
+  { hanzi: "牛", pinyin: "niú", arti: "Cow", image:"https://cdn-icons-png.flaticon.com/128/2395/2395796.png" },
+  { hanzi: "羊", pinyin: "yáng", arti: "Sheep", image:"https://cdn-icons-png.flaticon.com/128/2711/2711858.png" },
+  { hanzi: "鸡", pinyin: "jī", arti: "Chicken", image:"https://cdn-icons-png.flaticon.com/128/2002/2002616.png" },
+  { hanzi: "猪", pinyin: "zhū", arti: "Pig", image:"https://cdn-icons-png.flaticon.com/128/6989/6989071.png" },
+  { hanzi: "老虎", pinyin: "lǎohǔ", arti: "Tiger", image:"https://cdn-icons-png.flaticon.com/128/13640/13640322.png" }
+],
+
+vegetables: [
+  { hanzi: "蔬菜", pinyin: "shūcài", arti: "Vegetables", image:"https://cdn-icons-png.flaticon.com/128/10632/10632405.png" },
+  { hanzi: "白菜", pinyin: "báicài", arti: "Chinese cabbage", image:"https://cdn-icons-png.flaticon.com/128/12721/12721780.png" },
+  { hanzi: "西红柿", pinyin: "xīhóngshì", arti: "Tomato", image:"https://cdn-icons-png.flaticon.com/128/1790/1790387.png" },
+  { hanzi: "土豆", pinyin: "tǔdòu", arti: "Potato", image:"https://cdn-icons-png.flaticon.com/128/2149/2149857.png" },
+  { hanzi: "胡萝卜", pinyin: "húluóbo", arti: "Carrot", image:"https://cdn-icons-png.flaticon.com/128/1041/1041355.png" },
+  { hanzi: "黄瓜", pinyin: "huángguā", arti: "Cucumber", image:"https://cdn-icons-png.flaticon.com/128/7315/7315557.png" },
+  { hanzi: "洋葱", pinyin: "yángcōng", arti: "Onion", image:"https://cdn-icons-png.flaticon.com/128/2923/2923216.png" },
+  { hanzi: "茄子", pinyin: "qiézi", arti: "Eggplant", image:"https://cdn-icons-png.flaticon.com/128/2149/2149866.png" },
+  { hanzi: "菠菜", pinyin: "bōcài", arti: "Spinach", image:"https://cdn-icons-png.flaticon.com/128/8945/8945305.png" },
+  { hanzi: "辣椒", pinyin: "làjiāo", arti: "Chili pepper", image:"https://cdn-icons-png.flaticon.com/128/2149/2149856.png" }
+],
+
   hsk1: [
     { hanzi: "我", pinyin: "wǒ", arti: "I / me", image:"https://cdn-icons-png.flaticon.com/128/149/149071.png" },
     { hanzi: "你", pinyin: "nǐ", arti: "you", image:"https://cdn-icons-png.flaticon.com/128/2121/2121170.png" },
@@ -377,8 +429,16 @@ function startFlashcard(category) {
 
 function startLearning() {
   document.getElementById("landingPage").style.display = "none";
-  document.getElementById("homePage").style.display = "block";
-  loadBadges();
+  
+  const sudahOnboarding = localStorage.getItem('ezMandarin_onboarding_done');
+  
+  if (sudahOnboarding) {
+    document.getElementById("homePage").style.display = "block";
+    loadBadges();
+  } else {
+    document.body.style.background = "linear-gradient(135deg, #8B0000, #6b0000)";
+    document.getElementById("onboardingPage").style.display = "block";
+  }
 }
 
 function goHome() {
