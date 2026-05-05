@@ -1947,37 +1947,53 @@ function loadBadges() {
   badgeContainer.innerHTML = '';
 
   const levels = ['hsk1', 'hsk2', 'hsk3', 'hsk4', 'hsk5'];
-  const levelNames = { hsk1: 'HSK 1', hsk2: 'HSK 2', hsk3: 'HSK 3', hsk4: 'HSK 4', hsk5: 'HSK 5' };
+  const levelConfig = {
+    hsk1: { name: 'HSK 1', sublabel: 'Pemula',   stars: '★',     colorClass: 'badge-hsk1' },
+    hsk2: { name: 'HSK 2', sublabel: 'Dasar',     stars: '★★',    colorClass: 'badge-hsk2' },
+    hsk3: { name: 'HSK 3', sublabel: 'Menengah',  stars: '★★★',   colorClass: 'badge-hsk3' },
+    hsk4: { name: 'HSK 4', sublabel: 'Lanjutan',  stars: '★★★★',  colorClass: 'badge-hsk4' },
+    hsk5: { name: 'HSK 5', sublabel: 'Master',    stars: '★★★★★', colorClass: 'badge-hsk5' },
+  };
 
-  let hasBadge = false;
-
- levels.forEach(level => {
+  levels.forEach(level => {
     const storageKey = 'ezMandarin_' + level + '_steps';
     const stepStatus = JSON.parse(localStorage.getItem(storageKey));
+    const isUnlocked = stepStatus && stepStatus.completed === true;
+    const cfg = levelConfig[level];
 
-    if (stepStatus && stepStatus.completed === true) { // ← ubah ini
-      hasBadge = true;
-      const badge = document.createElement('div');
-      badge.style.cssText = `
-        width: 80px; height: 80px; border-radius: 50%;
-        background: linear-gradient(135deg, #c9a84c, #e8c96a);
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        box-shadow: 0 0 15px rgba(201,168,76,0.6);
-        animation: pulse 2s ease-in-out infinite;
-        cursor: default;
-      `;
-      badge.innerHTML = `
-        <div style="font-size:24px;">🎓</div>
-        <div style="font-size:10px; font-weight:bold; color:#4a2c00;">${levelNames[level]}</div>
-      `;
-      badgeContainer.appendChild(badge);
-    }
+    const badge = document.createElement('div');
+    badge.className = `badge-item ${isUnlocked ? 'unlocked' : 'locked'}`;
+
+    if (isUnlocked) {
+  const isMaster = level === 'hsk5';
+  badge.innerHTML = `
+    <div class="badge-wrapper">
+      ${isMaster ? '<span class="badge-crown">👑</span>' : ''}
+      <div class="badge-circle ${cfg.colorClass}">
+        <span class="badge-icon">🎓</span>
+        <span class="badge-text">HSK</span>
+        <span class="badge-stars">${cfg.stars}</span>
+      </div>
+    </div>
+    <span class="badge-name">${cfg.name}</span>
+    <span class="badge-sublabel">${cfg.sublabel}</span>
+  `;
+}
+    
+  else {
+  badge.innerHTML = `
+    <div class="badge-wrapper">
+      <div class="badge-circle">
+        <span class="badge-icon" style="opacity:0.3;">🎓</span>
+        <span class="badge-lock-icon">🔒</span>
+      </div>
+    </div>
+    <span class="badge-name">${cfg.name}</span>
+    <span class="badge-sublabel">Terkunci</span>
+  `;
+}
+    badgeContainer.appendChild(badge);
   });
-
-  if (!hasBadge) {
-    badgeContainer.innerHTML = '<p style="color:#aaa; font-size:13px; font-style:italic;">Belum ada badge. Selesaikan semua step HSK untuk mendapatkan badge! 🏆</p>';
-  }
 }
 
 function showHomePage() {

@@ -7,7 +7,7 @@
   <title>EZ Mandarin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -79,31 +79,69 @@
 <!-- �🟦 HOME -->
 
 <div id="homePage" style="display:none;">
-  <h1><img src="logo.png" alt="EZ Mandarin logo" style="width:120px; object-fit:contain;"></h1>
-  <p class="home-subtitle">Learning Mandarin in the Easiest Way</p>
 
-  <div class="button-group">
-    <button class="btn-pink flashcard-btn" onclick="document.getElementById('homePage').style.display='none'; document.getElementById('flashcardMenuPage').style.display='block';">FLASHCARD</button>
+  <!-- Logo + tagline -->
+  <div class="home-header">
+    <img src="logo.png" alt="EZ Mandarin logo" class="home-logo">
+    <p class="home-subtitle">Learning Mandarin in the Easiest Way</p>
   </div>
 
-  <div class="button-group">
-    <p class="section-subtitle">Practice your HSK levels</p>
-    <div class="button-container home-buttons hsk-cards-container">
-      <button class="btn-soft-blue hsk-card" onclick="openHskMap('hsk1')">HSK 1<br>📚</button>
-      <button class="btn-soft-blue hsk-card" onclick="openHskMap('hsk2')">HSK 2<br>📚</button>
-      <button class="btn-soft-blue hsk-card" onclick="openHskMap('hsk3')">HSK 3<br>📚</button>
-      <button class="btn-soft-blue hsk-card" onclick="openHskMap('hsk4')">HSK 4<br>📚</button>
-      <button class="btn-soft-blue hsk-card" onclick="openHskMap('hsk5')">HSK 5<br>📚</button>
+  <!-- Flashcard hero button -->
+  <button class="home-hero-btn" onclick="document.getElementById('homePage').style.display='none'; document.getElementById('flashcardMenuPage').style.display='block';">
+    <span class="home-hero-icon">🃏</span>
+    <span class="home-hero-text">
+      <span class="home-hero-title">Flashcard</span>
+      <span class="home-hero-sub">Learn vocabulary with pictures</span>
+    </span>
+    <span class="home-hero-arrow">›</span>
+  </button>
+
+  <!-- HSK section -->
+  <div class="home-section">
+    <div class="home-section-label">
+      <span class="home-section-dot"></span>
+      HSK level practice
+    </div>
+    <div class="hsk-cards-container">
+      <button class="hsk-card" onclick="openHskMap('hsk1')">
+        <span class="hsk-num">1</span>
+        <span class="hsk-label">HSK</span>
+      </button>
+      <button class="hsk-card" onclick="openHskMap('hsk2')">
+        <span class="hsk-num">2</span>
+        <span class="hsk-label">HSK</span>
+      </button>
+      <button class="hsk-card" onclick="openHskMap('hsk3')">
+        <span class="hsk-num">3</span>
+        <span class="hsk-label">HSK</span>
+      </button>
+      <button class="hsk-card" onclick="openHskMap('hsk4')">
+        <span class="hsk-num">4</span>
+        <span class="hsk-label">HSK</span>
+      </button>
+      <button class="hsk-card" onclick="openHskMap('hsk5')">
+        <span class="hsk-num">5</span>
+        <span class="hsk-label">HSK</span>
+      </button>
     </div>
   </div>
 
-  <br>
-  <button class="quiz-button quiz-button-full" onclick="goToQuiz()">Test Your Mandarin Level? CLICK HERE!</button>
-   <div id="badgeSection" style="margin-top: 20px;">
-    <p class="section-subtitle" style="color:#f31313c2; font-weight:bold;">🎖️ Your Badges</p>
-    <div id="badgeContainer" style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:8px;">
+  <!-- Quiz CTA -->
+  <button class="home-quiz-btn" onclick="goToQuiz()">
+    <span>🎯</span>
+    <span>Test Your Mandarin Level</span>
+    <span class="home-hero-arrow">›</span>
+  </button>
+
+  <!-- Badges -->
+  <div id="badgeSection" class="home-badge-section">
+    <div class="home-section-label">
+      <span class="home-section-dot" style="background:#c9a84c;"></span>
+      Your Badges
     </div>
+    <div id="badgeContainer" class="badge-container"></div>
   </div>
+
 </div>
 <img id="homePandaGif" src="./panda.gif" alt="Decorative panda" aria-hidden="true" />
 <img id="lampionGif" src="./lampion.gif" alt="Decorative lampion" aria-hidden="true" />
@@ -115,14 +153,45 @@
   <p style="color:#888; font-size:14px; margin-bottom:24px;">Choose a category to practice!</p>
 
   <div class="flashcard-menu-grid">
-    <button class="flashcard-category-card btn-pink" onclick="startFlashcard('fruits')"><span class="category-emoji">🍎</span><span class="category-name">Fruits</span></button>
-    <button class="flashcard-category-card btn-mint" onclick="startFlashcard('jobs')"><span class="category-emoji">👨‍💼</span><span class="category-name">Jobs</span></button>
-    <button class="flashcard-category-card btn-peach" onclick="startFlashcard('foods')"><span class="category-emoji">🍜</span><span class="category-name">Foods</span></button>
-    <button class="flashcard-category-card btn-lavender" onclick="startFlashcard('countries')"><span class="category-emoji">🌍</span><span class="category-name">Countries</span></button>
-    <button class="flashcard-category-card btn-yellow" onclick="startFlashcard('animals')"><span class="category-emoji">🐼</span><span class="category-name">Animals</span></button>
-    <button class="flashcard-category-card btn-sky" onclick="startFlashcard('colors')"><span class="category-emoji">🎨</span><span class="category-name">Colors</span></button>
-    <button class="flashcard-category-card btn-green" onclick="startFlashcard('vegetables')"><span class="category-emoji">🥦</span><span class="category-name">Vegetables</span></button>
-    <button class="flashcard-category-card btn-orange" onclick="startFlashcard('transportation')"><span class="category-emoji">🚗</span><span class="category-name">Transportation</span></button>
+<button class="flashcard-category-card btn-pink" onclick="startFlashcard('fruits')">
+  <img src="fruits.png" class="category-img">
+  <span class="category-name">Fruits</span>
+</button>
+
+<button class="flashcard-category-card btn-mint" onclick="startFlashcard('jobs')">
+  <img src="jobs.png" class="category-img">
+  <span class="category-name">Jobs</span>
+</button>
+
+<button class="flashcard-category-card btn-peach" onclick="startFlashcard('foods')">
+  <img src="foods.png" class="category-img">
+  <span class="category-name">Foods</span>
+</button>
+
+<button class="flashcard-category-card btn-lavender" onclick="startFlashcard('countries')">
+  <img src="countries.png" class="category-img">
+  <span class="category-name">Countries</span>
+</button>
+
+<button class="flashcard-category-card btn-yellow" onclick="startFlashcard('animals')">
+  <img src="animals.png" class="category-img">
+  <span class="category-name">Animals</span>
+</button>
+
+<button class="flashcard-category-card btn-sky" onclick="startFlashcard('colors')">
+  <img src="colors.png" class="category-img">
+  <span class="category-name">Colors</span>
+</button>
+
+<button class="flashcard-category-card btn-green" onclick="startFlashcard('vegetables')">
+  <img src="vegetables.png" class="category-img">
+  <span class="category-name">Vegetables</span>
+</button>
+
+<button class="flashcard-category-card btn-orange" onclick="startFlashcard('transportation')">
+  <img src="transportations.png" class="category-img">
+  <span class="category-name">Transportation</span>
+</button>
   </div>
 </div>
 

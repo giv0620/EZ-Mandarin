@@ -215,7 +215,7 @@ body {
 
 
 /* Container utama */
-#homePage, #flashcardPage, #quizPage,
+#flashcardPage, #quizPage,
 #quizQuestionPage, #resultPage, #reviewPage, #confirmPage, #onboardingPage, #ajakBelajarPage, #durasiPage, #levelCheckPage, #flashcardMenuPage, #hskMapPage {
   max-width: 500px;
   margin: 60px auto;
@@ -229,11 +229,6 @@ body {
   position: relative;
   border: 1px solid #c9a84c55;
   z-index: 1;
-}
-
-#homePage {
-  max-width: 600px;
-  overflow: hidden;
 }
 
 #flashcardMenuPage {
@@ -340,144 +335,285 @@ button:hover {
   transform: scale(1.05);
 }
 
-#homePage h1 {
-  font-size: 34px;
-  letter-spacing: 0.6px;
+/* ============================================
+   HOME PAGE — Modern + Chinese Redesign
+   ============================================ */
+
+/* Main container */
+#homePage {
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 28px 24px 32px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 2px 0 rgba(201,168,76,0.6),
+    0 24px 60px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+  position: relative;
+  border: 1px solid rgba(201,168,76,0.35);
+  overflow: hidden;
+  z-index: 1;
 }
 
-.title-emoji {
-  display: inline-block;
-  margin-left: 10px;
-  animation: floatEmoji 3s ease-in-out infinite;
+/* Top accent stripe */
+#homePage::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #8B0000, #c9a84c, #8B0000);
 }
 
-@keyframes floatEmoji {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+/* Corner hanzi watermark */
+#homePage::after {
+  content: '学';
+  position: absolute;
+  bottom: 10px; right: 12px;
+  font-size: 80px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: rgba(201,168,76,0.06);
+  font-weight: 900;
+  pointer-events: none;
+  line-height: 1;
+  z-index: 0;
+}
+/* ---- Header ---- */
+.home-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.home-logo {
+  width: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+  margin-bottom: 8px;
 }
 
 .home-subtitle {
-  font-size: 16px;
-  color: #6b5e7d;
-  margin-bottom: 22px;
+  font-size: 13px;
+  color: #525252;
+  margin: 0;
+  letter-spacing: 0.3px;
 }
 
-.section-subtitle {
-  font-size: 14px;
-  color: #7a6f8e;
-  margin: 6px 0 10px;
-}
-
-#homePage .button-container.home-buttons {
-  gap: 10px;
-}
-
-#homePage .button-container.home-buttons button {
-  flex: 1 1 42%;
-  min-width: 132px;
-  margin: 8px;
-  box-shadow: 0 10px 24px rgba(149, 157, 209, 0.15);
-}
-
-#homePage .btn-pink {
-  background: linear-gradient(135deg, #ff6ea0, #ff2d72);
-  color: white;
-}
-
-#homePage .btn-mint {
-  background: linear-gradient(135deg, #4cb17a, #2e8b57);
-  color: white;
-}
-
-#homePage .btn-peach {
-  background: linear-gradient(135deg, #ff964f, #ff6a1a);
-  color: white;
-}
-
-#homePage .btn-lavender {
-  background: linear-gradient(135deg, #8f6ad8, #6a49c7);
-  color: white;
-}
-
-#homePage .btn-soft-blue {
-  background: linear-gradient(135deg, #c9a84c, #e8c96a);
-  color: #4a2c00;
-  font-weight: bold;
-}
-
-#homePage .btn-soft-blue:hover {
-  background: linear-gradient(135deg, #d9b85c, #f0d87a) !important;
-}
-
-#homePage .quiz-button {
-  background: linear-gradient(135deg, #cce7ff, #86b8ff);
-  color: #1f3f73;
-}
-
-#quizPage .button-container button {
-  background: linear-gradient(135deg, #c9a84c, #e8c96a);
-  color: #4a2c00;
-  font-weight: bold;
-}
-
-#quizPage .button-container button:hover {
-  background: linear-gradient(135deg, #d9b85c, #f0d87a) !important;
-}
-
-#homePage .button-group {
-  margin-bottom: 16px;
-}
-
-#homePage .button-container.home-buttons {
-  justify-content: center;
-}
-
-#homePage .flashcard-btn {
-  width: 250px;
-  padding: 12px 20px;
-  margin: 0 auto;
-  display: block;
-  background: linear-gradient(135deg, #c9a84c, #e8c96a) !important;
-  color: #4a2c00 !important;
-}
-
-#homePage .hsk-cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 4px;
+/* ---- Hero Flashcard Button ---- */
+.home-hero-btn {
   width: 100%;
-  padding: 0 5px;
-  box-sizing: border-box;
-}
-
-#homePage .hsk-card {
-  width: calc(18%);
-  padding: 8px 4px;
-  font-size: 10px;
-  border-radius: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: 18px;
+  border: none;
+  background: linear-gradient(135deg, #8B0000 0%, #b22222 50%, #c9a84c 100%);
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(139,0,0,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.home-hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(139,0,0,0.45);
+}
+
+.home-hero-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.home-hero-text {
+  flex: 1;
+  text-align: left;
+  display: flex;
   flex-direction: column;
+  gap: 2px;
+}
+
+.home-hero-title {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.home-hero-sub {
+  font-size: 12px;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+.home-hero-arrow {
+  font-size: 24px;
+  opacity: 0.7;
+  font-weight: 300;
+  flex-shrink: 0;
+}
+
+/* ---- Section label ---- */
+.home-section {
+  margin-bottom: 20px;
+}
+
+.home-section-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 12px;
+}
+
+.home-section-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8B0000;
+  flex-shrink: 0;
+}
+
+/* ---- HSK Cards ---- */
+.hsk-cards-container {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.hsk-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 14px 6px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(201,168,76,0.4);
+  background: linear-gradient(160deg, #fffdf5 0%, #fff8e1 100%);
+  color: #4a2c00;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  box-shadow: 0 2px 8px rgba(201,168,76,0.15);
   margin: 0;
 }
 
-#homePage .quiz-button-full {
+.hsk-card:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 10px 24px rgba(201,168,76,0.35);
+  border-color: #c9a84c;
+  background: linear-gradient(160deg, #fff8e1 0%, #ffeeba 100%);
+}
+
+.hsk-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: #8B0000;
+  line-height: 1;
+}
+
+.hsk-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #c9a84c;
+  letter-spacing: 0.5px;
+}
+
+/* ---- Quiz Button ---- */
+.home-quiz-btn {
   width: 100%;
-  font-size: 16px;
-  padding: 16px 20px;
-  background: linear-gradient(135deg, #c9a84c, #e8c96a) !important;
-  color: #4a2c00 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(201,168,76,0.5);
+  background: rgba(201,168,76,0.08);
+  color: #6b3a00;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: 0.2s;
 }
 
-#homePage button:hover {
-  transform: translateY(-2px) scale(1.03);
+.home-quiz-btn:hover {
+  background: linear-gradient(135deg, #c9a84c, #e8c96a);
+  color: #4a2c00;
+  border-color: #c9a84c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(201,168,76,0.3);
 }
 
-#homePage button {
-  font-weight: 600;
+/* ---- Badge Section ---- */
+.home-badge-section {
+  margin-top: 4px;
 }
+
+.badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* ---- Dark mode ---- */
+body.dark #homePage {
+  background: rgba(18, 8, 8, 0.92);
+  border-color: rgba(201,168,76,0.3);
+  box-shadow:
+    0 2px 0 rgba(201,168,76,0.4),
+    0 24px 60px rgba(0,0,0,0.5);
+}
+
+body.dark .hsk-card {
+  background: linear-gradient(160deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.15) 100%);
+  border-color: rgba(201,168,76,0.3);
+  color: #f5e6c8;
+}
+
+body.dark .hsk-num {
+  color: #e8c96a;
+}
+
+body.dark .hsk-label {
+  color: #c9a84c;
+}
+
+body.dark .home-subtitle {
+  color: rgba(255,255,255,0.4);
+}
+
+body.dark .home-quiz-btn {
+  color: #e8c96a;
+  border-color: rgba(201,168,76,0.4);
+  background: rgba(201,168,76,0.06);
+}
+
+body.dark .home-section-label {
+  color: rgba(255,255,255,0.5);
+}
+
+/* ============================================ */
 
 /* Flashcard Menu Page */
 #flashcardMenuPage {
@@ -636,6 +772,9 @@ button:hover {
   background: #f0f3ff;
   color: #333;
   border-radius: 12px;
+  font-size: 20px;        /* ← tambah ini */
+  padding: 16px 20px;     /* ← opsional, biar button-nya lebih tinggi */
+  font-family: 'Noto Sans SC', sans-serif;  /* ← biar hanzi lebih tajam */
 }
 
 #options button:hover {
@@ -663,17 +802,6 @@ button:hover {
   margin-top: 10px;
 }
 
-#options button {
-  display: block;
-  width: 100%;
-  margin: 8px 0;
-  background: #e6f0ff;
-  color: #333;
-}
-
-#options button:hover {
-  background: #cce0ff;
-}
 
 #timerText {
   font-weight: bold;
@@ -751,7 +879,6 @@ body.dark #landingPage .landing-btn {
 body.dark #landingPage .landing-btn:hover {
   background: linear-gradient(135deg, #d9b85c, #f0d87a);
 }
-body.dark #homePage,
 body.dark #flashcardPage,
 body.dark #quizPage,
 body.dark #quizQuestionPage,
@@ -763,7 +890,6 @@ body.dark #confirmPage {
   box-shadow: 0 20px 50px rgba(0,0,0,0.6);
   border: 1px solid #c9a84c55;
 }
-#homePage:hover,
 #flashcardPage:hover,
 #quizPage:hover,
 #quizQuestionPage:hover,
@@ -822,6 +948,7 @@ body.dark #closeBtn:hover {
   display: block;
   margin: 0 auto;
 }
+
 #countdownOverlay {
   position: fixed;
   inset: 0;
@@ -1188,7 +1315,7 @@ body.dark .path-line {
 @media (max-width: 600px) {
 
   /* Container utama */
-  #homePage, #flashcardPage, #quizPage,
+  #flashcardPage, #quizPage,
   #quizQuestionPage, #resultPage, #reviewPage, #confirmPage,
   #onboardingPage, #ajakBelajarPage, #durasiPage, #levelCheckPage,
   #flashcardMenuPage, #hskMapPage, #grammarPage {
@@ -1197,6 +1324,30 @@ body.dark .path-line {
     border-radius: 16px;
     max-width: 100%;
     box-sizing: border-box;
+  }
+
+  #homePage {
+    margin: 10px;
+    padding: 20px 16px;
+    border-radius: 20px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hsk-card {
+    padding: 12px 4px;
+  }
+
+  .hsk-num {
+    font-size: 18px;
+  }
+
+  .home-hero-title {
+    font-size: 15px;
+  }
+
+  .home-hero-sub {
+    font-size: 11px;
   }
 
   /* Landing page */
@@ -1349,4 +1500,223 @@ body.dark .path-line {
   margin: 0 !important;
   z-index: 1000;
   border: 1px solid rgba(201, 168, 76, 0.55) !important;
+}
+
+#questionText {
+  font-size: 24px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: #000000;
+  margin-bottom: 16px;
+}
+
+.category-img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  margin-bottom: 6px;
+  transition: 0.2s;
+}
+
+.flashcard-category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flashcard-category-card:hover .category-img {
+  transform: scale(1.1);
+}
+
+/* ===== BADGE SECTION WRAPPER ===== */
+.home-badge-section {
+  background: linear-gradient(135deg, #f9f3e8, #fff8ee);
+  border-radius: 20px;
+  padding: 20px 16px;
+  border: 1px solid rgba(201,168,76,0.3);
+}
+
+/* ===== BADGE ROW ===== */
+.badge-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+/* ===== BADGE ITEM ===== */
+.badge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: default;
+}
+
+/* ===== BADGE CIRCLE ===== */
+.badge-circle {
+  width: 72px;
+  height: 72px;  /* sedikit lebih besar */
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;  /* ← tambah ini biar elemen tidak nempel */
+  position: relative;
+  overflow: visible;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.badge-icon {
+  font-size: 16px;
+  position: relative;
+  z-index: 2;
+  line-height: 1;
+}
+
+/* ===== SHIMMER ANIMATION ===== */
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(200%) rotate(25deg); }
+}
+
+.badge-circle::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 40%; height: 200%;
+  background: rgba(255,255,255,0.25);
+  transform: rotate(25deg);
+  animation: shimmer 2.5s infinite;
+  clip-path: circle(50% at 50% 50%); /* ← tambah ini */
+  border-radius: 50%;                /* ← tambah ini */
+}
+
+/* ===== UNLOCKED — warna per level ===== */
+.badge-hsk1 {
+  background: radial-gradient(circle at 35% 35%, #5ec97a, #2e8b57);
+  border: 3px solid #1a6b35;
+  box-shadow: 0 6px 20px rgba(46,139,87,0.5), 0 0 0 2px rgba(255,255,255,0.8);
+}
+.badge-hsk2 {
+  background: radial-gradient(circle at 35% 35%, #5ab4e8, #1e7fc2);
+  border: 3px solid #0d5a8a;
+  box-shadow: 0 6px 20px rgba(30,127,194,0.5), 0 0 0 2px rgba(255,255,255,0.8);
+}
+.badge-hsk3 {
+  background: radial-gradient(circle at 35% 35%, #d4943a, #a0621a);
+  border: 3px solid #6b3e08;
+  box-shadow: 0 6px 20px rgba(160,98,26,0.5), 0 0 0 2px rgba(255,255,255,0.8);
+}
+.badge-hsk4 {
+  background: radial-gradient(circle at 35% 35%, #c060d0, #8b2ca0);
+  border: 3px solid #5a1070;
+  box-shadow: 0 6px 20px rgba(139,44,160,0.5), 0 0 0 2px rgba(255,255,255,0.8);
+}
+.badge-hsk5 {
+  background: radial-gradient(circle at 35% 35%, #f5d770, #c9a84c, #a07828);
+  border: 3px solid #7a5500;
+  box-shadow: 0 6px 20px rgba(201,168,76,0.6), 0 0 0 2px rgba(255,255,255,0.8);
+  animation: pulse-gold 2s infinite;
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 6px 20px rgba(201,168,76,0.6), 0 0 0 0 rgba(201,168,76,0.3); }
+  50% { box-shadow: 0 6px 20px rgba(201,168,76,0.6), 0 0 0 8px rgba(201,168,76,0); }
+}
+
+/* Hover unlocked */
+.badge-item.unlocked .badge-circle:hover {
+  transform: scale(1.12) translateY(-4px);
+}
+
+/* ===== LOCKED ===== */
+.badge-item.locked .badge-circle {
+  background: radial-gradient(circle at 35% 35%, #3a3a3a, #1e1e1e);
+  border: 3px solid #444;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Matikan shimmer untuk locked */
+.badge-item.locked .badge-circle::after {
+  display: none;
+}
+
+/* Fog effect */
+.badge-item.locked .badge-circle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(60,60,60,0.4) 0%, rgba(20,20,20,0.7) 100%);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* ===== TEKS DALAM BADGE ===== */
+.badge-text {
+  font-size: 11px;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
+}
+
+.badge-stars {
+  font-size: 8px;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Gembok untuk locked */
+.badge-lock-icon {
+  font-size: 20px;
+  position: relative;
+  z-index: 2;
+  opacity: 0.6;
+}
+
+/* Crown untuk HSK 5 */
+.badge-crown {
+  font-size: 16px;
+  position: absolute;
+  top: -14px;        /* ← ubah dari -2px ke -14px */
+  z-index: 3;
+  left: 50%;
+  transform: translateX(-50%);  /* ← tambah ini biar center */
+}
+
+/* ===== LABEL BAWAH ===== */
+.badge-name {
+  font-size: 11px;
+  font-weight: 800;
+  color: #4a2c00;
+  text-align: center;
+}
+
+.badge-sublabel {
+  font-size: 9px;
+  color: #999;
+  text-align: center;
+  margin-top: -4px;
+}
+
+.badge-item.locked .badge-name {
+  color: #aaa;
+}
+
+.badge-item.locked .badge-sublabel {
+  color: #bbb;
+}
+
+.badge-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 14px; /* beri ruang untuk crown */
 }
