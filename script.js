@@ -371,10 +371,17 @@ function loadCard() {
   document.getElementById("hanzi").innerText = card.hanzi;
   document.getElementById("pinyin").innerText = card.pinyin;
   document.getElementById("arti").innerText = card.arti;
-  document.getElementById("cardImage").src = card.image || "";
+
+  const cardImage = document.getElementById("cardImage");
+  if (card.image) {
+    cardImage.src = card.image;
+    cardImage.style.display = "block";
+  } else {
+    cardImage.style.display = "none";
+  }
+
   updateButtons();
 }
-
 function updateButtons() {
   let total = flashcards[currentCategory].length;
 
