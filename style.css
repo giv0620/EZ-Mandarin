@@ -1318,6 +1318,17 @@ body.dark .path-line {
     box-sizing: border-box;
   }
 
+  #flashcardPage {
+    margin: 0;
+    min-height: 100dvh;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px 20px;
+    box-sizing: border-box;
+  }
+
   .hsk-card {
     padding: 12px 4px;
   }
