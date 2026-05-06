@@ -1885,40 +1885,6 @@ body.dark .path-line {
   font-size: 12px;
 }
 
-#flashcardPage[style*="display: none"],
-#flashcardPage[style*="display:none"] {
-  min-height: 0 !important;
-  padding: 0 !important;
-}
-
-/* Sembunyikan semua halaman yang tidak aktif — cover "display: none" DAN "display:none" */
-#onboardingPage[style*="display: none"],   #onboardingPage[style*="display:none"],
-#ajakBelajarPage[style*="display: none"],  #ajakBelajarPage[style*="display:none"],
-#durasiPage[style*="display: none"],       #durasiPage[style*="display:none"],
-#levelCheckPage[style*="display: none"],   #levelCheckPage[style*="display:none"],
-#placementPage[style*="display: none"],    #placementPage[style*="display:none"],
-#flashcardPage[style*="display: none"],    #flashcardPage[style*="display:none"],
-#flashcardMenuPage[style*="display: none"],#flashcardMenuPage[style*="display:none"],
-#hskMapPage[style*="display: none"],       #hskMapPage[style*="display:none"],
-#quizPage[style*="display: none"],         #quizPage[style*="display:none"],
-#quizQuestionPage[style*="display: none"], #quizQuestionPage[style*="display:none"],
-#confirmPage[style*="display: none"],      #confirmPage[style*="display:none"],
-#resultPage[style*="display: none"],       #resultPage[style*="display:none"],
-#reviewPage[style*="display: none"],       #reviewPage[style*="display:none"],
-#stepChoicePage[style*="display: none"],   #stepChoicePage[style*="display:none"],
-#stepWelcomePage[style*="display: none"],  #stepWelcomePage[style*="display:none"],
-#grammarPage[style*="display: none"],      #grammarPage[style*="display:none"],
-#graduationPage[style*="display: none"],   #graduationPage[style*="display:none"],
-#homePage[style*="display: none"],         #homePage[style*="display:none"] {
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  overflow: hidden !important;
-  border: none !important;
-  box-shadow: none !important;
-}
 /* ===== MOBILE SCROLL FIX ===== */
 html, body {
   overflow-x: hidden;

@@ -64,7 +64,7 @@ const flashcards = {
   { hanzi: "灰色", pinyin: "huīsè", arti: "Grey", image:"https://cdn-icons-png.flaticon.com/128/15631/15631406.png" }
 ],
 
-transportation: [
+transportations: [
   { hanzi: "车", pinyin: "chē", arti: "Car", image:"https://cdn-icons-png.flaticon.com/128/3097/3097180.png" },
   { hanzi: "公交车", pinyin: "gōngjiāochē", arti: "Bus", image:"https://cdn-icons-png.flaticon.com/128/416/416597.png" },
   { hanzi: "地铁", pinyin: "dìtiě", arti: "Subway", image:"https://cdn-icons-png.flaticon.com/128/1034/1034693.png" },
@@ -366,22 +366,33 @@ let flashcardOrigin = "home";
 let currentStep = 1;
 
 function loadCard() {
-  let card = flashcards[currentCategory][currentIndex];
 
-  document.getElementById("hanzi").innerText = card.hanzi;
-  document.getElementById("pinyin").innerText = card.pinyin;
-  document.getElementById("arti").innerText = card.arti;
+  const card = flashcards[currentCategory][currentIndex];
 
+  if (!card) {
+    console.log("card not found");
+    return;
+  }
+
+  const hanziEl = document.getElementById("hanzi");
+  const pinyinEl = document.getElementById("pinyin");
+  const artiEl = document.getElementById("arti");
   const cardImage = document.getElementById("cardImage");
-  if (card.image) {
+
+  hanziEl.innerText = card.hanzi || "";
+  pinyinEl.innerText = card.pinyin || "";
+  artiEl.innerText = card.arti || "";
+
+  if (card.image && cardImage) {
     cardImage.src = card.image;
     cardImage.style.display = "block";
   } else {
     cardImage.style.display = "none";
   }
 
-  updateButtons();
+  console.log("CARD LOADED");
 }
+
 function updateButtons() {
   let total = flashcards[currentCategory].length;
 
@@ -426,12 +437,13 @@ function prevCard() {
 function startFlashcard(category) {
   currentCategory = category;
   currentIndex = 0;
-  loadCard();
 
   document.getElementById("homePage").style.display = "none";
   document.getElementById("hskMapPage").style.display = "none";
   document.getElementById("flashcardMenuPage").style.display = "none";
   document.getElementById("flashcardPage").style.display = "block";
+
+  loadCard();
 }
 
 function startLearning() {
@@ -476,7 +488,9 @@ function goHome() {
   document.getElementById("resultPage").style.display = "none";
   document.getElementById("reviewPage").style.display = "none";
 
+  if (typeof timer !== "undefined") {
   clearInterval(timer);
+}
 
   // kalau dari step, balik ke stepChoicePage
   if (flashcardOrigin === "step") {
@@ -1713,30 +1727,7 @@ function loadHskMap(level) {
 } else {
   badgeSection.style.display = 'none';
 }
-  
-  for (let i = 1; i <= 4; i++) {
-    const stepCircle = document.querySelector('.step-' + i);
-    const stepKey = 'step' + i;
-    const emojiEl = stepCircle.querySelector('.step-emoji');
-    
-    if (stepStatus[stepKey]) {
-      // unlocked
-      stepCircle.classList.remove('locked');
-      stepCircle.classList.add('unlocked');
-      stepCircle.style.opacity = '1';
-      stepCircle.style.cursor = 'pointer';
-      emojiEl.innerText = stepEmojis[stepKey];
-      stepCircle.onclick = function() { openStepWelcome(i); };
-    } else {
-      // locked
-      stepCircle.classList.remove('unlocked');
-      stepCircle.classList.add('locked');
-      stepCircle.style.opacity = '0.5';
-      stepCircle.style.cursor = 'not-allowed';
-      emojiEl.innerText = '🔒';
-      stepCircle.onclick = null;
-    }
-  }
+
 }
 
 function startHskStep(step) {
@@ -2096,4 +2087,26 @@ function showHomeDecorations() {
 
   if (panda) panda.style.display = "block";
   if (lampion) lampion.style.display = "block";
+}
+
+function goHomeClean(currentPageId) {
+  // sembunyikan halaman sekarang
+  document.getElementById(currentPageId).style.display = "none";
+
+  // tampilkan home page
+  document.getElementById("homePage").style.display = "block";
+
+  // simpan onboarding selesai
+  localStorage.setItem("ezMandarin_onboarding_done", "true");
+
+  // kalau function ini ada, jalankan
+  if (typeof loadBadges === "function") {
+    loadBadges();
+  }
+
+  if (typeof showHomeDecorations === "function") {
+    showHomeDecorations();
+  }
+
+  window.scrollTo(0, 0);
 }
