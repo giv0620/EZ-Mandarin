@@ -360,6 +360,7 @@ button:hover {
   border: 1px solid rgba(201,168,76,0.35);
   overflow: visible;
   z-index: 1;
+  overscroll-behavior: contain;
 }
 
 /* Top accent stripe */
@@ -822,6 +823,7 @@ body.dark #placementPage p {
   opacity: 0.85;
   z-index: 999;
   pointer-events: none;
+  touch-action: none;
 }
 
 #lampionGif {
@@ -833,7 +835,21 @@ body.dark #placementPage p {
   opacity: 0.85;
   z-index: 999;
   pointer-events: none;
+  touch-action: none;
   filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.5));
+}
+
+@media (max-width: 600px) {
+  #lampionGif {
+    width: 180px;
+    opacity: 0.5;
+    z-index: 0;
+  }
+  #homePandaGif {
+    width: 120px;
+    opacity: 0.5;
+    z-index: 0;
+  }
 }
 
 /* Panda Decoration */
