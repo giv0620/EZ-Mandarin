@@ -1905,22 +1905,23 @@ html, body {
   }
 }
 
-@media (max-width: 600px) {
-  #flashcardPage {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: none;
-    border-radius: 0;
-  }
+#flashcardPage {
+  width: 400px;
+  padding: 50px 40px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  border: 1px solid #c9a84c55;
+  border-radius: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-
 
 @media (max-width: 600px) {
   #hskMapPage, #stepWelcomePage,
-  #stepChoicePage, #flashcardPage, #quizPage, #quizQuestionPage,
+  #stepChoicePage, #quizPage, #quizQuestionPage,
   #confirmPage, #resultPage, #reviewPage, #grammarPage,
   #graduationPage, #landingPage, #onboardingPage, #ajakBelajarPage,
   #durasiPage, #levelCheckPage, #placementPage {
@@ -1934,18 +1935,19 @@ html, body {
     box-sizing: border-box;
     z-index: 10;
   }
-}
 
-#flashcardPage {
-  width: 400px;
-  padding: 50px 40px; 
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  border: 1px solid #c9a84c55;
-  border-radius: 20px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  #flashcardPage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    border-radius: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 10;
+  }
 }
