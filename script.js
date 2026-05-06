@@ -1781,7 +1781,8 @@ function goToStepChoice() {
 
 function backToStepWelcome() {
   document.getElementById('stepChoicePage').style.display = 'none';
-  document.getElementById('stepWelcomePage').style.display = 'block'; // ← fix ini
+  document.getElementById('stepWelcomePage').style.display = 'none';
+  document.getElementById('hskMapPage').style.display = 'block';
 }
 
 function goToVocabulary() {
