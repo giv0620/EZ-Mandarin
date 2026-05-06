@@ -436,9 +436,14 @@ function startFlashcard(category) {
 
 function startLearning() {
   document.getElementById("landingPage").style.display = "none";
-  
+  document.getElementById("flashcardMenuPage").style.display = "none";
+  document.getElementById("flashcardPage").style.display = "none";
+  document.getElementById("onboardingPage").style.display = "none";
+  document.getElementById("hskMapPage").style.display = "none";
+  document.getElementById("graduationPage").style.display = "none";
+
   const sudahOnboarding = localStorage.getItem('ezMandarin_onboarding_done');
-  
+
   if (sudahOnboarding) {
     document.getElementById("homePage").style.display = "block";
     loadBadges();
