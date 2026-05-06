@@ -358,7 +358,7 @@ button:hover {
     inset 0 1px 0 rgba(255,255,255,0.8);
   position: relative;
   border: 1px solid rgba(201,168,76,0.35);
-  overflow: hidden;
+  overflow: visible;
   z-index: 1;
 }
 
@@ -369,6 +369,7 @@ button:hover {
   top: 0; left: 0; right: 0;
   height: 4px;
   background: linear-gradient(90deg, #8B0000, #c9a84c, #8B0000);
+  border-radius: 28px 28px 0 0;
 }
 
 /* Corner hanzi watermark */
