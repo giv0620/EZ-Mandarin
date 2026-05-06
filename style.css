@@ -1581,26 +1581,12 @@ body.dark .path-line {
 }
 
 #onboardingPage, #ajakBelajarPage, #durasiPage, #levelCheckPage, #placementPage {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  width: 90% !important;
-  max-width: 500px !important;
-  margin: 0 !important;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  margin: 60px auto;
   z-index: 1000;
-}
-
-#onboardingPage, #ajakBelajarPage, #durasiPage, #levelCheckPage, #placementPage {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  width: 90% !important;
-  max-width: 500px !important;
-  margin: 0 !important;
-  z-index: 1000;
-  border: 1px solid rgba(201, 168, 76, 0.55) !important;
+  border: 1px solid rgba(201, 168, 76, 0.55);
 }
 
 #questionText {
