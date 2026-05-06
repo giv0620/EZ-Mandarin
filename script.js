@@ -447,6 +447,7 @@ function startLearning() {
   if (sudahOnboarding) {
     document.getElementById("homePage").style.display = "block";
     loadBadges();
+    window.scrollTo({ top: 0, behavior: 'instant' });
   } else {
     document.body.style.background = "linear-gradient(135deg, #8B0000, #6b0000)";
     document.getElementById("onboardingPage").style.display = "block";
@@ -474,6 +475,7 @@ function goHome() {
   } else {
      loadBadges();
     document.getElementById("homePage").style.display = "block";
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 }
 
@@ -2020,38 +2022,5 @@ function loadBadges() {
 function showHomePage() {
   document.getElementById('homePage').style.display = 'block';
   loadBadges();
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
-
-// ===== FIX: 2x scroll bug on mobile =====
-// Elemen fixed (panda, lampion, dark overlay, switch) nyerap touch pertama.
-// Solusi: semua elemen fixed yang pointer-events:none tetap kita pastikan
-// tidak intercept scroll gesture dengan forcibly setting touch-action di semua
-// fixed elements, lalu kita pakai satu passive touchmove listener di document
-// yang langsung scroll body kalau target-nya bukan scrollable element.
-
-(function fixMobileScroll() {
-  if (!('ontouchstart' in window)) return; // desktop, skip
-
-  let startY = 0;
-
-  document.addEventListener('touchstart', function(e) {
-    startY = e.touches[0].clientY;
-  }, { passive: true });
-
-  document.addEventListener('touchmove', function(e) {
-    // Kalau target atau ancestor-nya adalah scrollable container selain body, biarkan
-    let el = e.target;
-    while (el && el !== document.body) {
-      const style = window.getComputedStyle(el);
-      const overflow = style.overflowY;
-      const isScrollable = (overflow === 'auto' || overflow === 'scroll') && el.scrollHeight > el.clientHeight;
-      if (isScrollable) return; // biarkan element itu yang scroll
-      el = el.parentElement;
-    }
-
-    // Tidak ada scrollable container — paksa scroll body
-    const deltaY = startY - e.touches[0].clientY;
-    window.scrollBy({ top: deltaY, behavior: 'instant' });
-    startY = e.touches[0].clientY;
-  }, { passive: true });
-})();

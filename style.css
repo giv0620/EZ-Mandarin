@@ -1922,4 +1922,5 @@ body.dark .path-line {
 /* ===== MOBILE SCROLL FIX ===== */
 html, body {
   overflow-x: hidden;
+  scroll-behavior: auto;
 }
