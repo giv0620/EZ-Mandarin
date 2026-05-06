@@ -1425,10 +1425,21 @@ body.dark .path-line {
 #flashcardMenuPage,
 #homePage,
 #hskMapPage,
-#grammarPage {
+#grammarPage,
+#quizPage,
+#quizQuestionPage,
+#resultPage,
+#reviewPage,
+#stepChoicePage,
+#onboardingPage,
+#ajakBelajarPage,
+#durasiPage,
+#levelCheckPage,
+#placementPage,
+#flashcardPage,
+#graduationPage {
   overflow-y: auto;
 }
-
   /* Container utama */
  #quizPage,
 #quizQuestionPage, #resultPage, #reviewPage, #confirmPage,
