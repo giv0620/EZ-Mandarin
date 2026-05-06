@@ -435,23 +435,33 @@ function startFlashcard(category) {
 }
 
 function startLearning() {
-  document.getElementById("landingPage").style.display = "none";
+  const landing = document.getElementById("landingPage");
+
+  landing.style.display = "none";
+  landing.style.visibility = "hidden";
+  landing.style.opacity = "0";
+  landing.style.pointerEvents = "none";
+
   document.getElementById("flashcardMenuPage").style.display = "none";
   document.getElementById("flashcardPage").style.display = "none";
   document.getElementById("onboardingPage").style.display = "none";
   document.getElementById("hskMapPage").style.display = "none";
-  document.getElementById("graduationPage").style.display = "none";
 
-  const sudahOnboarding = localStorage.getItem('ezMandarin_onboarding_done');
+  try {
+    const sudahOnboarding = localStorage.getItem('ezMandarin_onboarding_done');
 
-  if (sudahOnboarding) {
+    if (sudahOnboarding) {
+      document.getElementById("homePage").style.display = "block";
+      loadBadges();
+    } else {
+      document.getElementById("onboardingPage").style.display = "block";
+    }
+  } catch (e) {
+    console.log("localStorage blocked:", e);
     document.getElementById("homePage").style.display = "block";
-    loadBadges();
-    window.scrollTo(0, 0);
-  } else {
-    document.body.style.background = "linear-gradient(135deg, #8B0000, #6b0000)";
-    document.getElementById("onboardingPage").style.display = "block";
   }
+
+  window.scrollTo(0, 0);
 }
 
 function goHome() {
@@ -2036,12 +2046,25 @@ function showHomePage() {
   if (!('ontouchstart' in window)) return; // desktop, skip
 
   let startY = 0;
+  let startX = 0;
+  let isTap = true;
+  const TAP_THRESHOLD = 8; // pixel — gerakan < ini dianggap tap, bukan scroll
 
   document.addEventListener('touchstart', function(e) {
     startY = e.touches[0].clientY;
+    startX = e.touches[0].clientX;
+    isTap = true;
   }, { passive: true });
 
   document.addEventListener('touchmove', function(e) {
+    const deltaY = Math.abs(e.touches[0].clientY - startY);
+    const deltaX = Math.abs(e.touches[0].clientX - startX);
+
+    // Kalau gerakannya kecil banget, ini tap — jangan lakukan scroll paksa
+    if (deltaY < TAP_THRESHOLD && deltaX < TAP_THRESHOLD) return;
+
+    isTap = false;
+
     // Kalau target atau ancestor-nya adalah scrollable container selain body, biarkan
     let el = e.target;
     while (el && el !== document.body) {
@@ -2053,8 +2076,24 @@ function showHomePage() {
     }
 
     // Tidak ada scrollable container — paksa scroll body
-    const deltaY = startY - e.touches[0].clientY;
-    window.scrollBy({ top: deltaY, behavior: 'instant' });
+    const dy = startY - e.touches[0].clientY;
+    window.scrollBy({ top: dy, behavior: 'instant' });
     startY = e.touches[0].clientY;
   }, { passive: true });
 })();
+
+function hideHomeDecorations() {
+  const panda = document.getElementById("homePandaGif");
+  const lampion = document.getElementById("lampionGif");
+
+  if (panda) panda.style.display = "none";
+  if (lampion) lampion.style.display = "none";
+}
+
+function showHomeDecorations() {
+  const panda = document.getElementById("homePandaGif");
+  const lampion = document.getElementById("lampionGif");
+
+  if (panda) panda.style.display = "block";
+  if (lampion) lampion.style.display = "block";
+}

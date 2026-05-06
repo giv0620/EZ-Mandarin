@@ -348,7 +348,6 @@
   </div>
 </div>
 
-<script src="script.js"></script>
 
 <!-- 🎉 CONFETTI LIBRARY -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -422,20 +421,6 @@
   </div>
 </div>
 
-<div id="_dbg" style="position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.85);color:#0f0;font:12px monospace;padding:6px 10px;z-index:99999;max-height:120px;overflow-y:auto;pointer-events:none;"></div>
-<script>
-(function(){
-  var log = document.getElementById('_dbg');
-  function add(msg){ var d=document.createElement('div'); d.textContent=msg; log.prepend(d); if(log.children.length>8) log.removeChild(log.lastChild); }
-  document.addEventListener('touchstart', function(e){
-    var t=e.target, id=t.id||'', cls=t.className||'', tag=t.tagName;
-    var rect=t.getBoundingClientRect();
-    var cs=window.getComputedStyle(t);
-    add('[TOUCH] '+tag+'#'+id+'.'+cls+' | pos:'+cs.position+' | z:'+cs.zIndex+' | pe:'+cs.pointerEvents);
-  }, {passive:true, capture:true});
-  document.addEventListener('scroll', function(){ add('[SCROLL] scrollY='+window.scrollY); }, {passive:true});
-  add('[READY] debug aktif');
-})();
-</script>
+<script src="script.js"></script>
 </body>
 </html>
