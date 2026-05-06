@@ -360,7 +360,6 @@ button:hover {
   border: 1px solid rgba(201,168,76,0.35);
   overflow: visible;
   z-index: 1;
-  touch-action: pan-y;
 }
 
 /* Top accent stripe */
@@ -969,7 +968,6 @@ body.dark #placementPage p {
   top: 16px;
   right: 16px;
   z-index: 9999;
-  touch-action: manipulation;
 }
 
 .switch input {
@@ -1924,6 +1922,20 @@ body.dark .path-line {
 /* ===== MOBILE SCROLL FIX ===== */
 html, body {
   overflow-x: hidden;
-  scroll-behavior: auto;
-  touch-action: pan-y;
+}
+
+@media (max-width: 600px) {
+  /* Matikan semua animasi di badge yang ganggu scroll gesture */
+  .badge-circle::after {
+    animation: none !important;
+  }
+  .badge-hsk5 {
+    animation: none !important;
+  }
+  #homePage {
+    touch-action: pan-y;
+  }
+  .home-badge-section, .badge-container, .badge-item, .badge-circle, .badge-wrapper {
+    touch-action: pan-y;
+  }
 }
