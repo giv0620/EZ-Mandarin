@@ -366,7 +366,6 @@ let flashcardOrigin = "home";
 let currentStep = 1;
 
 function loadCard() {
-
   const card = flashcards[currentCategory][currentIndex];
 
   if (!card) {
@@ -390,7 +389,7 @@ function loadCard() {
     cardImage.style.display = "none";
   }
 
-  console.log("CARD LOADED");
+  updateButtons(); // ← tambahkan ini
 }
 
 function updateButtons() {
@@ -1775,8 +1774,9 @@ function goToStepChoice() {
 
 function backToStepWelcome() {
   document.getElementById('stepChoicePage').style.display = 'none';
-  document.getElementById('hskMapPage').style.display = 'block';
+  document.getElementById('stepWelcomePage').style.display = 'block'; // ← fix ini
 }
+
 function goToVocabulary() {
   flashcardOrigin = "step";
   document.getElementById('stepChoicePage').style.display = 'none';
