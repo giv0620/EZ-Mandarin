@@ -1845,3 +1845,9 @@ body.dark .path-line {
 #gradBadgeCircle .badge-stars {
   font-size: 12px;
 }
+
+#flashcardPage[style*="display: none"],
+#flashcardPage[style*="display:none"] {
+  min-height: 0 !important;
+  padding: 0 !important;
+}
