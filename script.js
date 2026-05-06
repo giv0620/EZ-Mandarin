@@ -423,33 +423,12 @@ function prevCard() {
   }
 }
 
-function showHomeDecorations() {
-  document.getElementById("homePandaGif").style.display = "block";
-  document.getElementById("lampionGif").style.display = "block";
-}
-
-function hideHomeDecorations() {
-  document.getElementById("homePandaGif").style.display = "none";
-  document.getElementById("lampionGif").style.display = "none";
-}
-
-// Dipakai oleh semua inline onclick yang navigate ke homepage
-function goHomeClean(hidePageId) {
-  if (hidePageId) document.getElementById(hidePageId).style.display = 'none';
-  localStorage.setItem('ezMandarin_onboarding_done', 'true');
-  document.getElementById('homePage').style.display = 'block';
-  showHomeDecorations();
-  loadBadges();
-  window.scrollTo({ top: 0, behavior: 'instant' });
-}
-
 function startFlashcard(category) {
   currentCategory = category;
   currentIndex = 0;
   loadCard();
 
   document.getElementById("homePage").style.display = "none";
-  hideHomeDecorations();
   document.getElementById("hskMapPage").style.display = "none";
   document.getElementById("flashcardMenuPage").style.display = "none";
   document.getElementById("flashcardPage").style.display = "block";
@@ -467,9 +446,8 @@ function startLearning() {
 
   if (sudahOnboarding) {
     document.getElementById("homePage").style.display = "block";
-    showHomeDecorations();
     loadBadges();
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
   } else {
     document.body.style.background = "linear-gradient(135deg, #8B0000, #6b0000)";
     document.getElementById("onboardingPage").style.display = "block";
@@ -495,16 +473,14 @@ function goHome() {
     flashcardOrigin = "home"; // reset
     document.getElementById("stepChoicePage").style.display = "block";
   } else {
-    loadBadges();
+     loadBadges();
     document.getElementById("homePage").style.display = "block";
-    showHomeDecorations();
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo(0, 0);
   }
 }
 
 function goToQuiz() {
   document.getElementById("homePage").style.display = "none";
-  hideHomeDecorations();
   document.getElementById("quizPage").style.display = "block";
 }
 
@@ -2045,9 +2021,8 @@ function loadBadges() {
 
 function showHomePage() {
   document.getElementById('homePage').style.display = 'block';
-  showHomeDecorations();
   loadBadges();
-  window.scrollTo({ top: 0, behavior: 'instant' });
+  window.scrollTo(0, 0);
 }
 
 // ===== FIX: 2x scroll bug on mobile =====
