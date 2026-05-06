@@ -1419,6 +1419,16 @@ body.dark .path-line {
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 600px) {
 
+  body {
+    overflow: hidden;
+  }
+#flashcardMenuPage,
+#homePage,
+#hskMapPage,
+#grammarPage {
+  overflow-y: auto;
+}
+
   /* Container utama */
  #quizPage,
 #quizQuestionPage, #resultPage, #reviewPage, #confirmPage,
@@ -1876,4 +1886,12 @@ body.dark .path-line {
   padding: 0 !important;
   margin: 0 !important;
   overflow: hidden !important;
+}
+
+#flashcardMenuPage[style*="display: none"] {
+  display: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
