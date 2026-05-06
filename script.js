@@ -1682,11 +1682,20 @@ function loadHskMap(level) {
   const badgeSection = document.getElementById('hskBadgeSection');
   const badgeLabel = document.getElementById('hskBadgeLabel');
   if (stepStatus && (stepStatus.step4 === true && stepStatus.completed === true)) {
-    badgeSection.style.display = 'block';
-    badgeLabel.innerText = 'HSK ' + levelNumber;
-  } else {
-    badgeSection.style.display = 'none';
-  }
+  badgeSection.style.display = 'block';
+  badgeLabel.innerText = 'HSK ' + levelNumber;
+
+  const circle = badgeSection.querySelector('.badge-hsk-dynamic');
+  const starsEl = document.getElementById('hskBadgeStars');
+  const starsMap = { '1':'★', '2':'★★', '3':'★★★', '4':'★★★★', '5':'★★★★★' };
+  const colorMap = { '1':'badge-hsk1', '2':'badge-hsk2', '3':'badge-hsk3', '4':'badge-hsk4', '5':'badge-hsk5' };
+
+  const lvl = String(levelNumber);
+  circle.className = `badge-circle badge-hsk-dynamic ${colorMap[lvl]}`;
+  starsEl.innerText = starsMap[lvl];
+} else {
+  badgeSection.style.display = 'none';
+}
   
   for (let i = 1; i <= 4; i++) {
     const stepCircle = document.querySelector('.step-' + i);
@@ -1904,6 +1913,13 @@ function openGraduation() {
   document.getElementById('gradTitle').innerText = 'Selamat! 🎉';
   document.getElementById('gradLevel').innerText = 'Kamu telah lulus HSK ' + levelNumber + '!';
   document.getElementById('badgeLevel').innerText = 'HSK ' + levelNumber;
+  
+  const starsMap = { '1':'★', '2':'★★', '3':'★★★', '4':'★★★★', '5':'★★★★★' };
+const colorMap = { '1':'badge-hsk1', '2':'badge-hsk2', '3':'badge-hsk3', '4':'badge-hsk4', '5':'badge-hsk5' };
+const lvl = String(levelNumber);
+const gradCircle = document.getElementById('gradBadgeCircle');
+gradCircle.className = `badge-circle ${colorMap[lvl]}`;
+document.getElementById('gradBadgeStars').innerText = starsMap[lvl];
 
   // ← tambahkan ini
   const nextLevel = parseInt(levelNumber) + 1;
@@ -1948,10 +1964,10 @@ function loadBadges() {
 
   const levels = ['hsk1', 'hsk2', 'hsk3', 'hsk4', 'hsk5'];
   const levelConfig = {
-    hsk1: { name: 'HSK 1', sublabel: 'Pemula',   stars: '★',     colorClass: 'badge-hsk1' },
-    hsk2: { name: 'HSK 2', sublabel: 'Dasar',     stars: '★★',    colorClass: 'badge-hsk2' },
-    hsk3: { name: 'HSK 3', sublabel: 'Menengah',  stars: '★★★',   colorClass: 'badge-hsk3' },
-    hsk4: { name: 'HSK 4', sublabel: 'Lanjutan',  stars: '★★★★',  colorClass: 'badge-hsk4' },
+    hsk1: { name: 'HSK 1', sublabel: 'Beginner',   stars: '★',     colorClass: 'badge-hsk1' },
+    hsk2: { name: 'HSK 2', sublabel: 'Elementary',     stars: '★★',    colorClass: 'badge-hsk2' },
+    hsk3: { name: 'HSK 3', sublabel: 'Intermediate',  stars: '★★★',   colorClass: 'badge-hsk3' },
+    hsk4: { name: 'HSK 4', sublabel: 'Advanced',  stars: '★★★★',  colorClass: 'badge-hsk4' },
     hsk5: { name: 'HSK 5', sublabel: 'Master',    stars: '★★★★★', colorClass: 'badge-hsk5' },
   };
 

@@ -237,14 +237,18 @@
   </div>
 
   <!-- Badge section -->
-  <div id="hskBadgeSection" style="display:none; margin-top:20px; text-align:center;">
-    <div style="width:90px; height:90px; border-radius:50%; background:linear-gradient(135deg,#c9a84c,#e8c96a); display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0 auto; box-shadow:0 0 20px rgba(201,168,76,0.7); animation:pulse 2s ease-in-out infinite;">
-      <div style="font-size:30px;">🎓</div>
-      <div id="hskBadgeLabel" style="font-size:11px; font-weight:bold; color:#4a2c00;">HSK 1</div>
+ <div id="hskBadgeSection" style="display:none; margin-top:20px; text-align:center;">
+  <div class="badge-wrapper" style="justify-content:center;">
+    <div class="badge-circle badge-hsk-dynamic">
+      <span class="badge-icon">🎓</span>
+      <span class="badge-text">HSK</span>
+      <span id="hskBadgeStars" class="badge-stars">★</span>
     </div>
-    <p style="color:#c9a84c; font-weight:bold; margin-top:10px; font-size:14px;">Level Completed! ✓</p>
   </div>
+  <span id="hskBadgeLabel" class="badge-name" style="display:block; margin-top:8px;">HSK 1</span>
+  <p style="color:#c9a84c; font-weight:bold; margin-top:6px; font-size:14px;">Level Completed! ✓</p>
 </div>
+</div> 
 
 <!-- 🟨 STEP WELCOME PAGE -->
 <div id="stepWelcomePage" style="display:none;">
@@ -405,13 +409,15 @@
     <div class="grad-emoji">🏆</div>
     <h1 id="gradTitle" style="color:#8B0000; font-size:28px;">Congratulations!</h1>
     <h2 id="gradLevel" style="color:#c9a84c; font-size:22px;">You have passed HSK 1!</h2>
-    <div class="grad-badge">
-      <div class="badge-inner">
-        <div style="font-size:40px;">🎓</div>
-        <div id="badgeLevel" style="font-weight:bold; color:#8B0000; font-size:18px;">HSK 1</div>
-        <div style="font-size:11px; color:#ffffff; margin-top:4px;">Completed! ✓</div>
-      </div>
-    </div>
+   <div class="badge-wrapper" style="justify-content:center; margin: 16px 0;">
+  <div id="gradBadgeCircle" class="badge-circle badge-hsk1" style="width:100px; height:100px;">
+    <span class="badge-icon">🎓</span>
+    <span class="badge-text">HSK</span>
+    <span id="gradBadgeStars" class="badge-stars">★</span>
+  </div>
+</div>
+<span id="badgeLevel" class="badge-name" style="display:block; text-align:center;">HSK 1</span>
+<p style="color:#c9a84c; font-weight:bold; font-size:13px; text-align:center; margin-top:4px;">Completed! ✓</p>
     <p id="gradDesc" style="color:#555; font-size:14px; margin-top:16px; padding: 0 20px;">You have mastered all the vocabulary, grammar, and HSK 1 materials. Moving on to HSK 2? 💪</p>
     <button onclick="closeGraduation()" style="margin-top:20px; font-size:16px; padding: 14px 30px;">Lihat Progress 🗺️</button>
   </div>

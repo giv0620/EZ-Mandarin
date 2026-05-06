@@ -1278,22 +1278,6 @@ body.dark .path-line {
   animation: float 3s ease-in-out infinite;
 }
 
-.grad-badge {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #c9a84c, #e8c96a);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px auto;
-  box-shadow: 0 0 40px rgba(201,168,76,0.7);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.badge-inner {
-  text-align: center;
-}
 
 #graduationPage {
   position: fixed;
@@ -1719,4 +1703,16 @@ body.dark .path-line {
   align-items: center;
   justify-content: center;
   padding-top: 14px; /* beri ruang untuk crown */
+}
+
+#gradBadgeCircle .badge-icon {
+  font-size: 28px;
+}
+
+#gradBadgeCircle .badge-text {
+  font-size: 14px;
+}
+
+#gradBadgeCircle .badge-stars {
+  font-size: 12px;
 }
