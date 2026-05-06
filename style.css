@@ -1447,7 +1447,7 @@ body.dark .path-line {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 24px 20px;
+  padding: 60px 20px 24px;
   box-sizing: border-box;
 }
 
