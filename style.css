@@ -1905,3 +1905,20 @@ html, body {
     touch-action: pan-y;
   }
 }
+
+/* Semua page fullscreen agar tidak overlap */
+#flashcardMenuPage, #hskMapPage, #stepWelcomePage,
+#stepChoicePage, #flashcardPage, #quizPage, #quizQuestionPage,
+#confirmPage, #resultPage, #reviewPage, #grammarPage,
+#graduationPage, #landingPage, #onboardingPage, #ajakBelajarPage,
+#durasiPage, #levelCheckPage, #placementPage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  z-index: 10;
+}
