@@ -220,7 +220,7 @@ body {
 
 
 /* Container utama */
-#flashcardPage, #quizPage,
+#quizPage,
 #quizQuestionPage, #resultPage, #reviewPage, #confirmPage, #onboardingPage, #ajakBelajarPage, #durasiPage, #levelCheckPage, #flashcardMenuPage, #hskMapPage {
   max-width: 500px;
   margin: 60px auto;
@@ -1032,7 +1032,6 @@ body.dark #confirmPage {
   box-shadow: 0 20px 50px rgba(0,0,0,0.6);
   border: 1px solid #c9a84c55;
 }
-#flashcardPage:hover,
 #quizPage:hover,
 #quizQuestionPage:hover,
 #resultPage:hover {
@@ -1657,7 +1656,7 @@ body.dark .path-line {
 #questionText {
   font-size: 24px;
   font-family: 'Noto Sans SC', sans-serif;
-  color: #000000;
+  color: var(--text-color);
   margin-bottom: 16px;
 }
 
@@ -1906,19 +1905,47 @@ html, body {
   }
 }
 
-/* Semua page fullscreen agar tidak overlap */
-#flashcardMenuPage, #hskMapPage, #stepWelcomePage,
-#stepChoicePage, #flashcardPage, #quizPage, #quizQuestionPage,
-#confirmPage, #resultPage, #reviewPage, #grammarPage,
-#graduationPage, #landingPage, #onboardingPage, #ajakBelajarPage,
-#durasiPage, #levelCheckPage, #placementPage {
+@media (max-width: 600px) {
+  #flashcardPage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    border-radius: 0;
+  }
+}
+
+
+@media (max-width: 600px) {
+  #hskMapPage, #stepWelcomePage,
+  #stepChoicePage, #flashcardPage, #quizPage, #quizQuestionPage,
+  #confirmPage, #resultPage, #reviewPage, #grammarPage,
+  #graduationPage, #landingPage, #onboardingPage, #ajakBelajarPage,
+  #durasiPage, #levelCheckPage, #placementPage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    z-index: 10;
+  }
+}
+
+#flashcardPage {
+  width: 400px;
+  padding: 50px 40px; 
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  border: 1px solid #c9a84c55;
+  border-radius: 20px;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  box-sizing: border-box;
-  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

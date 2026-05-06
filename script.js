@@ -457,6 +457,12 @@ function startLearning() {
   document.getElementById("flashcardPage").style.display = "none";
   document.getElementById("onboardingPage").style.display = "none";
   document.getElementById("hskMapPage").style.display = "none";
+  document.getElementById("stepChoicePage").style.display = "none";      // ← tambah
+  document.getElementById("stepWelcomePage").style.display = "none";     // ← tambah
+  document.getElementById("quizPage").style.display = "none";            // ← tambah
+  document.getElementById("quizQuestionPage").style.display = "none";    // ← tambah
+  document.getElementById("resultPage").style.display = "none";          // ← tambah
+  document.getElementById("reviewPage").style.display = "none";          // ← tambah
 
   try {
     const sudahOnboarding = localStorage.getItem('ezMandarin_onboarding_done');
@@ -486,6 +492,7 @@ function goHome() {
   document.getElementById("confirmPage").style.display = "none";
   document.getElementById("resultPage").style.display = "none";
   document.getElementById("reviewPage").style.display = "none";
+  document.getElementById("flashcardMenuPage").style.display = "none";
 
   if (typeof timer !== "undefined") {
   clearInterval(timer);
