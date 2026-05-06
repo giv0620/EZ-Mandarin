@@ -360,7 +360,6 @@ button:hover {
   border: 1px solid rgba(201,168,76,0.35);
   overflow: visible;
   z-index: 1;
-  overscroll-behavior: contain;
 }
 
 /* Top accent stripe */
@@ -1441,9 +1440,6 @@ body.dark .path-line {
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 600px) {
 
-  body {
-    overflow: hidden;
-  }
 #flashcardMenuPage,
 #homePage,
 #hskMapPage,
@@ -1924,15 +1920,6 @@ body.dark .path-line {
   box-shadow: none !important;
 }
 /* ===== MOBILE SCROLL FIX ===== */
-html {
-  height: 100%;
+html, body {
   overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
 }
