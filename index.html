@@ -39,7 +39,7 @@
 
 <div id="ajakBelajarPage" style="display:none;">
   <h1>Lets Learn Now! 🎉</h1>
-<button class="animate-bounce delay-1" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('ajakBelajarPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">Start Learning</button>
+<button class="animate-bounce delay-1" onclick="buttonPop(this); goHomeClean('ajakBelajarPage');">Start Learning</button>
 </div>
 
 <div id="durasiPage" style="display:none;">
@@ -55,11 +55,11 @@
 <div id="levelCheckPage" style="display:none;">
   <h1>Have you taken the HSK exam?</h1>
   <div class="button-container onboarding-buttons level-buttons">
-<button class="animate-bounce delay-1" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 1</button>
-<button class="animate-bounce delay-2" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 2</button>
-<button class="animate-bounce delay-3" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 3</button>
-<button class="animate-bounce delay-4" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 4</button>
-<button class="animate-bounce delay-5" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">HSK 5</button>
+<button class="animate-bounce delay-1" onclick="buttonPop(this); goHomeClean('levelCheckPage');">HSK 1</button>
+<button class="animate-bounce delay-2" onclick="buttonPop(this); goHomeClean('levelCheckPage');">HSK 2</button>
+<button class="animate-bounce delay-3" onclick="buttonPop(this); goHomeClean('levelCheckPage');">HSK 3</button>
+<button class="animate-bounce delay-4" onclick="buttonPop(this); goHomeClean('levelCheckPage');">HSK 4</button>
+<button class="animate-bounce delay-5" onclick="buttonPop(this); goHomeClean('levelCheckPage');">HSK 5</button>
     <button class="animate-bounce delay-6" onclick="buttonPop(this); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('placementPage').style.display='block';">No, I Haven't</button>
   </div>
 </div>
@@ -73,7 +73,7 @@
 
 <button class="choice-button animate-bounce delay-3" onclick="buttonPop(this); const buttons=document.querySelectorAll('#placementPage .choice-button'); buttons.forEach(b=>{b.disabled=true; if(b.id==='placementA'){b.style.background='#4caf50';}}); this.style.background='#f44336'; this.classList.add('shake'); setTimeout(()=>this.classList.remove('shake'),240); document.getElementById('placementContinue').innerText='You can start from HSK 1 →'; setTimeout(()=>document.getElementById('placementContinue').style.display='inline-flex',2000);">C. 羽毛球</button>
   </div>
- <button id="placementContinue" class="landing-btn" style="display:none; margin-top:24px;" onclick="buttonPop(this); localStorage.setItem('ezMandarin_onboarding_done', 'true'); document.getElementById('placementPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">You can start from HSK 2/3 →</button>
+ <button id="placementContinue" class="landing-btn" style="display:none; margin-top:24px;" onclick="buttonPop(this); goHomeClean('placementPage');">You can start from HSK 2/3 →</button>
 </div>
 
 <!-- �🟦 HOME -->
@@ -87,7 +87,7 @@
   </div>
 
   <!-- Flashcard hero button -->
-  <button class="home-hero-btn" onclick="document.getElementById('homePage').style.display='none'; document.getElementById('flashcardMenuPage').style.display='block';">
+  <button class="home-hero-btn" onclick="document.getElementById('homePage').style.display='none'; hideHomeDecorations(); document.getElementById('flashcardMenuPage').style.display='block';">
     <span class="home-hero-icon">🃏</span>
     <span class="home-hero-text">
       <span class="home-hero-title">Flashcard</span>
@@ -143,12 +143,12 @@
   </div>
 
 </div>
-<img id="homePandaGif" src="./panda.gif" alt="Decorative panda" aria-hidden="true" />
-<img id="lampionGif" src="./lampion.gif" alt="Decorative lampion" aria-hidden="true" />
+<img id="homePandaGif" src="./panda.gif" alt="Decorative panda" aria-hidden="true" style="display:none;" />
+<img id="lampionGif" src="./lampion.gif" alt="Decorative lampion" aria-hidden="true" style="display:none;" />
 
 <!-- 🟨 FLASHCARD MENU -->
 <div id="flashcardMenuPage" style="display:none;">
-  <button class="close-btn" onclick="document.getElementById('flashcardMenuPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">×</button>
+  <button class="close-btn" onclick="document.getElementById('flashcardMenuPage').style.display='none'; document.getElementById('homePage').style.display='block'; showHomeDecorations(); loadBadges();">×</button>
   <h1 style="font-size: 32px; margin-bottom: 8px; color: #8B0000;">FLASHCARD</h1>
   <p style="color:#888; font-size:14px; margin-bottom:24px;">Choose a category to practice!</p>
 
@@ -197,7 +197,7 @@
 
 <!-- 🟨 HSK MAP PAGE -->
 <div id="hskMapPage" style="display:none;">
-<button class="back-btn" onclick="document.getElementById('hskMapPage').style.display='none'; document.getElementById('homePage').style.display='block'; loadBadges();">← Back</button>
+<button class="back-btn" onclick="document.getElementById('hskMapPage').style.display='none'; document.getElementById('homePage').style.display='block'; showHomeDecorations(); loadBadges();">← Back</button>
   <h1 id="hskMapTitle" style="font-size: 32px; margin-bottom: 40px; color: #8B0000;">HSK 1</h1>
   
   <div class="hsk-path-container">
@@ -422,6 +422,20 @@
   </div>
 </div>
 
-
+<div id="_dbg" style="position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.85);color:#0f0;font:12px monospace;padding:6px 10px;z-index:99999;max-height:120px;overflow-y:auto;pointer-events:none;"></div>
+<script>
+(function(){
+  var log = document.getElementById('_dbg');
+  function add(msg){ var d=document.createElement('div'); d.textContent=msg; log.prepend(d); if(log.children.length>8) log.removeChild(log.lastChild); }
+  document.addEventListener('touchstart', function(e){
+    var t=e.target, id=t.id||'', cls=t.className||'', tag=t.tagName;
+    var rect=t.getBoundingClientRect();
+    var cs=window.getComputedStyle(t);
+    add('[TOUCH] '+tag+'#'+id+'.'+cls+' | pos:'+cs.position+' | z:'+cs.zIndex+' | pe:'+cs.pointerEvents);
+  }, {passive:true, capture:true});
+  document.addEventListener('scroll', function(){ add('[SCROLL] scrollY='+window.scrollY); }, {passive:true});
+  add('[READY] debug aktif');
+})();
+</script>
 </body>
 </html>
