@@ -1878,78 +1878,44 @@ body.dark .path-line {
   padding: 0 !important;
 }
 
-#onboardingPage[style*="display: none"],
-#ajakBelajarPage[style*="display: none"],
-#durasiPage[style*="display: none"],
-#levelCheckPage[style*="display: none"],
-#placementPage[style*="display: none"],
-#flashcardPage[style*="display: none"],
-#flashcardMenuPage[style*="display: none"],
-#hskMapPage[style*="display: none"],
-#quizPage[style*="display: none"],
-#quizQuestionPage[style*="display: none"],
-#confirmPage[style*="display: none"],
-#resultPage[style*="display: none"],
-#reviewPage[style*="display: none"],
-#stepChoicePage[style*="display: none"],
-#stepWelcomePage[style*="display: none"],
-#grammarPage[style*="display: none"],
-#graduationPage[style*="display: none"],
-#homePage[style*="display: none"] {
+/* Sembunyikan semua halaman yang tidak aktif — cover "display: none" DAN "display:none" */
+#onboardingPage[style*="display: none"],   #onboardingPage[style*="display:none"],
+#ajakBelajarPage[style*="display: none"],  #ajakBelajarPage[style*="display:none"],
+#durasiPage[style*="display: none"],       #durasiPage[style*="display:none"],
+#levelCheckPage[style*="display: none"],   #levelCheckPage[style*="display:none"],
+#placementPage[style*="display: none"],    #placementPage[style*="display:none"],
+#flashcardPage[style*="display: none"],    #flashcardPage[style*="display:none"],
+#flashcardMenuPage[style*="display: none"],#flashcardMenuPage[style*="display:none"],
+#hskMapPage[style*="display: none"],       #hskMapPage[style*="display:none"],
+#quizPage[style*="display: none"],         #quizPage[style*="display:none"],
+#quizQuestionPage[style*="display: none"], #quizQuestionPage[style*="display:none"],
+#confirmPage[style*="display: none"],      #confirmPage[style*="display:none"],
+#resultPage[style*="display: none"],       #resultPage[style*="display:none"],
+#reviewPage[style*="display: none"],       #reviewPage[style*="display:none"],
+#stepChoicePage[style*="display: none"],   #stepChoicePage[style*="display:none"],
+#stepWelcomePage[style*="display: none"],  #stepWelcomePage[style*="display:none"],
+#grammarPage[style*="display: none"],      #grammarPage[style*="display:none"],
+#graduationPage[style*="display: none"],   #graduationPage[style*="display:none"],
+#homePage[style*="display: none"],         #homePage[style*="display:none"] {
   display: none !important;
   height: 0 !important;
   min-height: 0 !important;
   padding: 0 !important;
   margin: 0 !important;
   overflow: hidden !important;
-}
-
-#flashcardMenuPage[style*="display: none"] {
-  display: none !important;
-  height: 0 !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 /* ===== MOBILE SCROLL FIX ===== */
 html {
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  overflow-x: hidden;
 }
 
-/* Pastikan semua halaman konten bisa scroll di mobile */
-#homePage, #flashcardPage, #quizPage, #quizQuestionPage,
-#resultPage, #reviewPage, #confirmPage, #onboardingPage,
-#ajakBelajarPage, #durasiPage, #levelCheckPage, #placementPage,
-#flashcardMenuPage, #hskMapPage, #stepChoicePage, #stepWelcomePage,
-#grammarPage, #graduationPage {
+body {
+  min-height: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  max-height: none;
-}
-
-/* Khusus mobile: pastikan body tidak ter-lock */
-@media (max-width: 600px) {
-  html, body {
-    overflow-x: hidden;
-    overflow-y: auto;
-    height: auto;
-    min-height: 100%;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
-  }
-
-  #homePage {
-    margin: 16px auto;
-    max-height: none;
-    overflow: visible;
-  }
-
-  #flashcardMenuPage,
-  #hskMapPage,
-  #grammarPage,
-  #reviewPage {
-    overflow-y: auto !important;
-    max-height: none !important;
-  }
+  touch-action: pan-y;
 }
