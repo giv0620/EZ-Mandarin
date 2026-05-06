@@ -658,6 +658,64 @@ body.dark #onboardingPage p {
   color: #f5e6c8;
 }
 
+body.dark #ajakBelajarPage,
+body.dark #durasiPage,
+body.dark #levelCheckPage,
+body.dark #confirmPage {
+  background: rgba(18, 8, 8, 0.92);
+  border-color: rgba(201,168,76,0.3);
+}
+
+body.dark #ajakBelajarPage h1,
+body.dark #ajakBelajarPage h2,
+body.dark #ajakBelajarPage p,
+body.dark #durasiPage h1,
+body.dark #durasiPage h2,
+body.dark #levelCheckPage h1,
+body.dark #confirmPage h1,
+body.dark #confirmPage p {
+  color: #f5e6c8;
+}
+
+body.dark #grammarPage {
+  background: rgba(18, 8, 8, 0.92);
+  border-color: rgba(201,168,76,0.3);
+}
+
+body.dark .grammar-card {
+  background: rgba(30, 15, 5, 0.8);
+  border-color: rgba(201,168,76,0.2);
+}
+
+body.dark .grammar-title,
+body.dark .grammar-chinese {
+  color: #e8c96a;
+}
+
+body.dark .grammar-pinyin {
+  color: #c9a84c;
+}
+
+body.dark .grammar-meaning {
+  color: #f5e6c8;
+}
+
+body.dark .grammar-structure {
+  background: rgba(201,168,76,0.1);
+  border-color: rgba(201,168,76,0.3);
+  color: #e8c96a;
+}
+
+body.dark .grammar-example {
+  background: rgba(255,255,255,0.05);
+  color: #f5e6c8;
+}
+
+body.dark .grammar-example-pinyin,
+body.dark .grammar-example-translation {
+  color: #aaa;
+}
+
 /* ============================================ */
 
 /* Flashcard Menu Page */
@@ -905,6 +963,7 @@ input:checked + .slider::before {
 }
 
 body.dark {
+  background-color: #1a0000; 
   background: radial-gradient(ellipse at top, #c9a84c22, transparent 50%),
               url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23dd9999' fill-opacity='0.05'%3E%3Cpath d='M30 0l15 15-15 15L15 15zM0 30l15 15-15 15L-15 45zM60 30l15 15-15 15L45 45zM30 60l15 15-15 15L15 45z'/%3E%3C/g%3E%3C/svg%3E"),
               linear-gradient(135deg, #3d0000, #1a0000);
