@@ -613,6 +613,51 @@ body.dark .home-section-label {
   color: rgba(255,255,255,0.5);
 }
 
+body.dark .home-badge-section {
+  background: rgba(30, 15, 5, 0.6);
+  border-color: rgba(201,168,76,0.2);
+}
+
+body.dark .badge-name {
+  color: #e8c96a;
+}
+
+body.dark .badge-sublabel {
+  color: #aaa;
+}
+
+body.dark .badge-item.locked .badge-name {
+  color: #666;
+}
+
+body.dark .badge-item.locked .badge-sublabel {
+  color: #555;
+}
+
+body.dark .badge-circle {
+  overflow: hidden;
+}
+
+body.dark #flashcardMenuPage {
+  background: rgba(18, 8, 8, 0.92);
+  border-color: rgba(201,168,76,0.3);
+}
+
+body.dark .flashcard-category-card {
+  filter: brightness(0.75) saturate(0.85);
+}
+
+body.dark #onboardingPage {
+  background: rgba(18, 8, 8, 0.92);
+  border-color: rgba(201,168,76,0.3);
+}
+
+body.dark #onboardingPage h1,
+body.dark #onboardingPage h2,
+body.dark #onboardingPage p {
+  color: #f5e6c8;
+}
+
 /* ============================================ */
 
 /* Flashcard Menu Page */
