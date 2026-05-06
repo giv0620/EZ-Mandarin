@@ -666,16 +666,6 @@ body.dark #confirmPage {
   border-color: rgba(201,168,76,0.3);
 }
 
-body.dark #ajakBelajarPage h1,
-body.dark #ajakBelajarPage h2,
-body.dark #ajakBelajarPage p,
-body.dark #durasiPage h1,
-body.dark #durasiPage h2,
-body.dark #levelCheckPage h1,
-body.dark #confirmPage h1,
-body.dark #confirmPage p {
-  color: #f5e6c8;
-}
 
 body.dark #grammarPage {
   background: rgba(18, 8, 8, 0.92);
@@ -714,6 +704,32 @@ body.dark .grammar-example {
 body.dark .grammar-example-pinyin,
 body.dark .grammar-example-translation {
   color: #aaa;
+}
+
+body.dark #onboardingPage,
+body.dark #ajakBelajarPage,
+body.dark #durasiPage,
+body.dark #levelCheckPage,
+body.dark #placementPage {
+  background: rgba(18, 8, 8, 0.92);
+  border-color: rgba(201,168,76,0.3);
+  color: #f5e6c8;
+}
+
+body.dark #onboardingPage h1,
+body.dark #onboardingPage h2,
+body.dark #onboardingPage p,
+body.dark #ajakBelajarPage h1,
+body.dark #ajakBelajarPage h2,
+body.dark #ajakBelajarPage p,
+body.dark #durasiPage h1,
+body.dark #durasiPage h2,
+body.dark #durasiPage p,
+body.dark #levelCheckPage h1,
+body.dark #levelCheckPage p,
+body.dark #placementPage h1,
+body.dark #placementPage p {
+  color: #f5e6c8;
 }
 
 /* ============================================ */
@@ -1433,6 +1449,16 @@ body.dark .path-line {
   align-items: center;
   padding: 24px 20px;
   box-sizing: border-box;
+}
+
+#flashcardPage > * {
+  margin-top: 0;
+}
+
+#flashcardPage .back-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
 }
 
   .hsk-card {
