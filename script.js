@@ -505,6 +505,7 @@ function goHome() {
   } else {
      loadBadges();
     document.getElementById("homePage").style.display = "block";
+    showHomeDecorations(); // ← tambah baris ini
     window.scrollTo(0, 0);
   }
 }
@@ -1299,7 +1300,7 @@ function loadQuestion() {
     let buttons = document.querySelectorAll("#options button");
     buttons.forEach(btn => {
       if (btn.innerText === userAnswers[quizIndex]) {
-        btn.style.background = "lightpink";
+        btn.style.background = "lightblue";
       }
     });
   }
@@ -1330,7 +1331,7 @@ function selectAnswer(selected, element) {
   let buttons = document.querySelectorAll("#options button");
   buttons.forEach(btn => btn.style.background = "#ddd");
 
-  element.style.background = "lightpink";
+  element.style.background = "lightblue";
 }
 // =======================
 // ➡️ NEXT

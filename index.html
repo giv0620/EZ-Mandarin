@@ -68,10 +68,10 @@
   <h1>Answer this question!</h1>
   <p class="placement-question">我喜欢踢__.</p>
   <div class="button-container onboarding-buttons placement-buttons">
-    <button id="placementA" class="choice-button animate-bounce delay-1" onclick="buttonPop(this); confetti({ particleCount: 45, spread: 70, origin: { y: 0.6 } }); const buttons=document.querySelectorAll('#placementPage .choice-button'); buttons.forEach(b=>b.disabled=true); this.style.background='#4caf50'; document.getElementById('placementContinue').innerText='You can start from HSK 2/3 →'; setTimeout(()=>document.getElementById('placementContinue').style.display='inline-flex',2000);">A. 足球</button>
-<button class="choice-button animate-bounce delay-2" onclick="buttonPop(this); const buttons=document.querySelectorAll('#placementPage .choice-button'); buttons.forEach(b=>{b.disabled=true; if(b.id==='placementA'){b.style.background='#4caf50';}}); this.style.background='#f44336'; this.classList.add('shake'); setTimeout(()=>this.classList.remove('shake'),240); document.getElementById('placementContinue').innerText='You can start from HSK 1 →'; setTimeout(()=>document.getElementById('placementContinue').style.display='inline-flex',2000);">B. 篮球</button>
+onclick="buttonPop(this); confetti({...}); var buttons=document.querySelectorAll(...)..."
+onclick="buttonPop(this); var buttons=document.querySelectorAll(...)..."
 
-<button class="choice-button animate-bounce delay-3" onclick="buttonPop(this); const buttons=document.querySelectorAll('#placementPage .choice-button'); buttons.forEach(b=>{b.disabled=true; if(b.id==='placementA'){b.style.background='#4caf50';}}); this.style.background='#f44336'; this.classList.add('shake'); setTimeout(()=>this.classList.remove('shake'),240); document.getElementById('placementContinue').innerText='You can start from HSK 1 →'; setTimeout(()=>document.getElementById('placementContinue').style.display='inline-flex',2000);">C. 羽毛球</button>
+onclick="buttonPop(this); var buttons=document.querySelectorAll(...)..."
   </div>
  <button id="placementContinue" class="landing-btn" style="display:none; margin-top:24px;" onclick="buttonPop(this); goHomeClean('placementPage');">You can start from HSK 2/3 →</button>
 </div>
