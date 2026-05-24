@@ -470,12 +470,14 @@ function startLearning() {
     if (sudahOnboarding) {
       document.getElementById("homePage").style.display = "block";
       loadBadges();
+      showHomeDecorations();
     } else {
       document.getElementById("onboardingPage").style.display = "block";
     }
   } catch (e) {
     console.log("localStorage blocked:", e);
     document.getElementById("homePage").style.display = "block";
+    showHomeDecorations();
   }
 
   window.scrollTo(0, 0);
@@ -2032,6 +2034,7 @@ function loadBadges() {
 function showHomePage() {
   document.getElementById('homePage').style.display = 'block';
   loadBadges();
+  showHomeDecorations();
   window.scrollTo(0, 0);
 }
 
