@@ -436,6 +436,7 @@ function prevCard() {
 function startFlashcard(category) {
   currentCategory = category;
   currentIndex = 0;
+  flashcardOrigin = "home"; // ← tambah ini
 
   document.getElementById("homePage").style.display = "none";
   document.getElementById("hskMapPage").style.display = "none";
@@ -1874,6 +1875,7 @@ function unlockNextStep() {
 function goToGrammar() {
   grammarIndex = 0;
   currentGrammarLevel = currentHskLevel + '_step' + currentStep;
+  document.getElementById('grammarPageTitle').innerText = currentHskLevel.toUpperCase() + ' — Grammar'; // ← tambah ini
   document.getElementById('stepChoicePage').style.display = 'none';
   document.getElementById('grammarPage').style.display = 'block';
   loadGrammarCard();
