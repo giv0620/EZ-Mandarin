@@ -436,7 +436,7 @@ function prevCard() {
 function startFlashcard(category) {
   currentCategory = category;
   currentIndex = 0;
-  flashcardOrigin = "home"; // ← tambah ini
+  flashcardOrigin = "home"; // default: dari menu
 
   document.getElementById("homePage").style.display = "none";
   document.getElementById("hskMapPage").style.display = "none";
@@ -514,6 +514,7 @@ function goHome() {
 }
 
 function goToQuiz() {
+  flashcardOrigin = "home"; // reset biar Back to Home tidak nyasar ke stepChoicePage
   document.getElementById("homePage").style.display = "none";
   document.getElementById("quizPage").style.display = "block";
 }
@@ -1790,7 +1791,6 @@ function backToStepWelcome() {
 }
 
 function goToVocabulary() {
-  flashcardOrigin = "step";
   document.getElementById('stepChoicePage').style.display = 'none';
   
   // pakai data step khusus kalau ada, fallback ke level
@@ -1800,6 +1800,9 @@ function goToVocabulary() {
   } else {
     startFlashcard(currentHskLevel);
   }
+
+  // override SETELAH startFlashcard (yang reset ke "home")
+  flashcardOrigin = "step";
 }
 
 function goToExam() {
@@ -2040,12 +2043,6 @@ function showHomePage() {
   window.scrollTo(0, 0);
 }
 
-// ===== FIX: 2x scroll bug on mobile =====
-// Elemen fixed (panda, lampion, dark overlay, switch) nyerap touch pertama.
-// Solusi: semua elemen fixed yang pointer-events:none tetap kita pastikan
-// tidak intercept scroll gesture dengan forcibly setting touch-action di semua
-// fixed elements, lalu kita pakai satu passive touchmove listener di document
-// yang langsung scroll body kalau target-nya bukan scrollable element.
 
 (function fixMobileScroll() {
   if (!('ontouchstart' in window)) return; // desktop, skip
@@ -2123,4 +2120,4 @@ function goHomeClean(currentPageId) {
   }
 
   window.scrollTo(0, 0);
-}
+} 
