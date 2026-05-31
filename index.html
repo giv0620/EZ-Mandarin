@@ -1,425 +1,1000 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>EZ Mandarin</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giveniey Amabelle — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  :root {
+    --red: #a8281a;
+    --red-bright: #b62414;
+    --red-dim: #7B241C;
+    --red-glow: rgba(192, 57, 43, 0.15);
+    --bg: #0A0A0A;
+    --bg2: #111111;
+    --bg3: #181818;
+    --text: #F0EDE8;
+    --text-muted: #7A7570;
+    --border: rgba(255,255,255,0.07);
+    --border-red: rgba(192, 57, 43, 0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--red-bright);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px; height: 32px;
+    border: 1px solid rgba(231, 76, 60, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.35s ease, width 0.3s, height 0.3s;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--red-bright);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(192,57,43,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 30% 40% at 85% 20%, rgba(231,76,60,0.08) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    opacity: 0.4;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--red-bright);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    line-height: 0.9;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--red-bright);
+  }
+
+  .hero-desc {
+    max-width: 580px;
+    font-size: clamp(16px, 1.25vw, 20px);
+    line-height: 1.75;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.6s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.8s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--red);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .btn-primary:hover { background: var(--red-bright); transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 28px;
+    border: 1px solid var(--border-red);
+    color: var(--red-bright);
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .btn-ghost:hover { border-color: var(--red-bright); background: var(--red-glow); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+  }
+  .hero-scroll span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--red-bright), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* Section base */
+  section { padding: 8rem 4rem; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--red-bright);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--red-dim);
+  }
+
+  /* About */
+  #about { background: var(--bg); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  .about-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .about-heading em { font-style: italic; color: var(--red-bright); }
+  .about-text {
+    font-size: clamp(16px, 1.3vw, 20px);
+    line-height: 1.85;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2rem;
+  }
+  .skill-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 6px 14px;
+    border: 1px solid var(--border-red);
+    color: var(--red-bright);
+    letter-spacing: 0.08em;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: var(--border);
+  }
+  .stat-box {
+    background: var(--bg2);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--red-dim);
+  }
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--red-bright);
+    margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Experience */
+  #experience { background: var(--bg2); }
+  .exp-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .exp-heading em { font-style: italic; color: var(--red-bright); }
+  .exp-sub {
+    font-size: clamp(16px, 1.3vw, 20px);
+    color: var(--text-muted);
+    margin-bottom: 4rem;
+    max-width: 500px;
+  }
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5px;
+    background: var(--border);
+  }
+  .exp-item {
+    background: var(--bg);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--red-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .exp-item:hover::before { opacity: 1; }
+  .exp-item:hover { background: var(--bg3); }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    gap: 2rem;
+  }
+  .exp-role {
+    font-size: clamp(17px, 1.3vw, 21px);
+    font-weight: 700;
+  }
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(12px, 0.9vw, 14px);
+    color: var(--red-bright);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+  .exp-company {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(13px, 1vw, 15px);
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .exp-bullets li {
+    font-size: clamp(15px, 1.15vw, 18px);
+    line-height: 1.7;
+    color: var(--text-muted);
+    padding-left: 1.2em;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--red-dim);
+    font-size: 11px;
+  }
+
+  /* Projects */
+  #projects { background: var(--bg); }
+  .projects-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .projects-heading em { font-style: italic; color: var(--red-bright); }
+  .projects-sub {
+    font-size: clamp(15px, 1.1vw, 18px);
+    color: var(--text-muted);
+    margin-bottom: 4rem;
+    max-width: 500px;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+  }
+
+  .project-card {
+    background: var(--bg2);
+    padding: 2.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--red-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover::before { opacity: 1; }
+  .project-card:hover { background: var(--bg3); }
+
+  .project-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--red-dim);
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+  }
+  .project-icon {
+    width: 72px; height: 72px;
+    border-radius: 12px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.3s;
+  }
+  .project-card:hover .project-icon { border-color: var(--border-red); }
+
+  .project-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    transition: color 0.2s;
+  }
+  .project-card:hover .project-title { color: var(--red-bright); }
+
+  .project-desc {
+    font-size: clamp(15px, 1.15vw, 18px);
+    line-height: 1.75;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 1.5rem;
+  }
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px;
+    background: var(--bg);
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .project-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--red-bright);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.2s;
+  }
+  .project-card:hover .project-link { gap: 14px; }
+
+  .project-arrow {
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+  .project-card:hover .project-arrow { transform: translateX(4px); }
+
+  /* Contact */
+  #contact { background: var(--bg2); }
+  .contact-inner {
+    max-width: 700px;
+  }
+  .contact-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .contact-heading em { font-style: italic; color: var(--red-bright); }
+  .contact-text {
+    font-size: clamp(15px, 1.1vw, 18px);
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    max-width: 500px;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    max-width: 500px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg);
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.2s;
+    font-size: 14px;
+  }
+  .contact-item:hover { background: var(--bg3); }
+  .contact-item-left { display: flex; align-items: center; gap: 14px; }
+  .contact-item-icon {
+    width: 36px; height: 36px;
+    background: var(--bg3);
+    border: 1px solid var(--border-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .contact-item-label { font-weight: 600; }
+  .contact-item-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .contact-arrow {
+    color: var(--red-dim);
+    font-size: 18px;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .contact-item:hover .contact-arrow { color: var(--red-bright); transform: translateX(4px); }
+
+  /* Footer */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+  .footer-dot {
+    width: 6px; height: 6px;
+    background: var(--red);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 8rem 1.5rem 5rem; }
+    section { padding: 5rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .exp-header { flex-direction: column; gap: 0.25rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+    .hero-scroll { right: 1.5rem; }
+  }
+</style>
+</head>
 <body>
 
-  <label class="switch">
-  <input type="checkbox" id="darkToggle" onchange="toggleDarkMode()">
-  <span class="slider"></span>
-</label>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
 
-<!-- � LANDING PAGE -->
-<div id="landingPage" style="display:flex;">
-  <div class="landing-container">
-    <div class="landing-content">
-      <h1 class="landing-title"><img src="logo.png" alt="EZ Mandarin logo" style="width:180px; object-fit:contain;"></h1>
-      <p class="landing-tagline">Learning Mandarin in the Easiest Way 🏮</p>
-      <button class="landing-btn animate-bounce delay-1" onclick="startLearning();">Start Learning →</button>
-    </div>
-  </div>
-</div>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">G.Amabelle</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-<div id="onboardingPage" style="display:none;">
-  <h1>Have you ever studied Mandarin before?</h1>
-  <div class="button-container onboarding-buttons">
-    <button class="animate-bounce delay-1" onclick="buttonPop(this); document.getElementById('onboardingPage').style.display='none'; document.getElementById('ajakBelajarPage').style.display='block';">Not Yet</button>
-    <button class="animate-bounce delay-2" onclick="buttonPop(this); document.getElementById('onboardingPage').style.display='none'; document.getElementById('durasiPage').style.display='block';">Yes</button>
-  </div>
-</div>
-
-<div id="ajakBelajarPage" style="display:none;">
-  <h1>Lets Learn Now! 🎉</h1>
-<button class="animate-bounce delay-1" onclick="buttonPop(this); goHomeClean('ajakBelajarPage');">Start Learning</button>
-</div>
-
-<div id="durasiPage" style="display:none;">
-  <h1>How long have you been studying Mandarin?</h1>
-  <div class="button-container onboarding-buttons">
-    <button class="animate-bounce delay-1" onclick="buttonPop(this); document.getElementById('durasiPage').style.display='none'; document.getElementById('levelCheckPage').style.display='block';">1-3 months</button>
-    <button class="animate-bounce delay-2" onclick="buttonPop(this); document.getElementById('durasiPage').style.display='none'; document.getElementById('levelCheckPage').style.display='block';">4-7 months</button>
-    <button class="animate-bounce delay-3" onclick="buttonPop(this); document.getElementById('durasiPage').style.display='none'; document.getElementById('levelCheckPage').style.display='block';">7-12 months</button>
-    <button class="animate-bounce delay-4" onclick="buttonPop(this); document.getElementById('durasiPage').style.display='none'; document.getElementById('levelCheckPage').style.display='block';">&gt;1 year</button>
-  </div>
-</div>
-
-<div id="levelCheckPage" style="display:none;">
-  <h1>Have you taken the HSK exam?</h1>
-  <div class="button-container onboarding-buttons level-buttons">
-<button class="animate-bounce delay-1" onclick="buttonPop(this); goHomeClean('levelCheckPage');">HSK 1</button>
-<button class="animate-bounce delay-2" onclick="buttonPop(this); goHomeClean('levelCheckPage');">HSK 2</button>
-<button class="animate-bounce delay-3" onclick="buttonPop(this); goHomeClean('levelCheckPage');">HSK 3</button>
-<button class="animate-bounce delay-4" onclick="buttonPop(this); goHomeClean('levelCheckPage');">HSK 4</button>
-<button class="animate-bounce delay-5" onclick="buttonPop(this); goHomeClean('levelCheckPage');">HSK 5</button>
-    <button class="animate-bounce delay-6" onclick="buttonPop(this); document.getElementById('levelCheckPage').style.display='none'; document.getElementById('placementPage').style.display='block';">No, I Haven't</button>
-  </div>
-</div>
-
-<div id="placementPage" style="display:none;">
-  <h1>Answer this question!</h1>
-  <p class="placement-question">我喜欢踢__.</p>
-  <div class="button-container onboarding-buttons placement-buttons">
-onclick="buttonPop(this); confetti({...}); var buttons=document.querySelectorAll(...)..."
-onclick="buttonPop(this); var buttons=document.querySelectorAll(...)..."
-
-onclick="buttonPop(this); var buttons=document.querySelectorAll(...)..."
-  </div>
- <button id="placementContinue" class="landing-btn" style="display:none; margin-top:24px;" onclick="buttonPop(this); goHomeClean('placementPage');">You can start from HSK 2/3 →</button>
-</div>
-
-<!-- �🟦 HOME -->
-
-<div id="homePage" style="display:none;">
-
-  <!-- Logo + tagline -->
-  <div class="home-header">
-    <img src="logo.png" alt="EZ Mandarin logo" class="home-logo">
-    <p class="home-subtitle">Learning Mandarin in the Easiest Way</p>
-  </div>
-
-  <!-- Flashcard hero button -->
-  <button class="home-hero-btn" onclick="document.getElementById('homePage').style.display='none'; hideHomeDecorations(); document.getElementById('flashcardMenuPage').style.display='block';">
-    <span class="home-hero-icon">🃏</span>
-    <span class="home-hero-text">
-      <span class="home-hero-title">Flashcard</span>
-      <span class="home-hero-sub">Learn vocabulary with pictures</span>
-    </span>
-    <span class="home-hero-arrow">›</span>
-  </button>
-
-  <!-- HSK section -->
-  <div class="home-section">
-    <div class="home-section-label">
-      <span class="home-section-dot"></span>
-      HSK level practice
-    </div>
-    <div class="hsk-cards-container">
-      <button class="hsk-card" onclick="openHskMap('hsk1')">
-        <span class="hsk-num">1</span>
-        <span class="hsk-label">HSK</span>
-      </button>
-      <button class="hsk-card" onclick="openHskMap('hsk2')">
-        <span class="hsk-num">2</span>
-        <span class="hsk-label">HSK</span>
-      </button>
-      <button class="hsk-card" onclick="openHskMap('hsk3')">
-        <span class="hsk-num">3</span>
-        <span class="hsk-label">HSK</span>
-      </button>
-      <button class="hsk-card" onclick="openHskMap('hsk4')">
-        <span class="hsk-num">4</span>
-        <span class="hsk-label">HSK</span>
-      </button>
-      <button class="hsk-card" onclick="openHskMap('hsk5')">
-        <span class="hsk-num">5</span>
-        <span class="hsk-label">HSK</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Quiz CTA -->
-  <button class="home-quiz-btn" onclick="goToQuiz()">
-    <span>🎯</span>
-    <span>Test Your Mandarin Level</span>
-    <span class="home-hero-arrow">›</span>
-  </button>
-
-  <!-- Badges -->
-  <div id="badgeSection" class="home-badge-section">
-    <div class="home-section-label">
-      <span class="home-section-dot" style="background:#c9a84c;"></span>
-      Your Badges
-    </div>
-    <div id="badgeContainer" class="badge-container"></div>
-  </div>
-
-</div>
-<img id="homePandaGif" src="./panda.gif" alt="Decorative panda" aria-hidden="true" style="display:none;" />
-<img id="lampionGif" src="./lampion.gif" alt="Decorative lampion" aria-hidden="true" style="display:none;" />
-
-<!-- 🟨 FLASHCARD MENU -->
-<div id="flashcardMenuPage" style="display:none;">
-  <button class="close-btn" onclick="document.getElementById('flashcardMenuPage').style.display='none'; document.getElementById('homePage').style.display='block'; showHomeDecorations(); loadBadges();">×</button>
-  <h1 style="font-size: 32px; margin-bottom: 8px; color: #8B0000;">FLASHCARD</h1>
-  <p style="color:#888; font-size:14px; margin-bottom:24px;">Choose a category to practice!</p>
-
-  <div class="flashcard-menu-grid">
-<button class="flashcard-category-card btn-pink" onclick="startFlashcard('fruits')">
-  <img src="fruits.png" class="category-img">
-  <span class="category-name">Fruits</span>
-</button>
-
-<button class="flashcard-category-card btn-mint" onclick="startFlashcard('jobs')">
-  <img src="jobs.png" class="category-img">
-  <span class="category-name">Jobs</span>
-</button>
-
-<button class="flashcard-category-card btn-peach" onclick="startFlashcard('foods')">
-  <img src="foods.png" class="category-img">
-  <span class="category-name">Foods</span>
-</button>
-
-<button class="flashcard-category-card btn-lavender" onclick="startFlashcard('countries')">
-  <img src="countries.png" class="category-img">
-  <span class="category-name">Countries</span>
-</button>
-
-<button class="flashcard-category-card btn-yellow" onclick="startFlashcard('animals')">
-  <img src="animals.png" class="category-img">
-  <span class="category-name">Animals</span>
-</button>
-
-<button class="flashcard-category-card btn-sky" onclick="startFlashcard('colors')">
-  <img src="colors.png" class="category-img">
-  <span class="category-name">Colors</span>
-</button>
-
-<button class="flashcard-category-card btn-green" onclick="startFlashcard('vegetables')">
-  <img src="vegetables.png" class="category-img">
-  <span class="category-name">Vegetables</span>
-</button>
-
-<button class="flashcard-category-card btn-orange" onclick="startFlashcard('transportations')">
-  <img src="transportations.png" class="category-img">
-  <span class="category-name">Transportation</span>
-</button>
-  </div>
-</div>
-
-<!-- 🟨 HSK MAP PAGE -->
-<div id="hskMapPage" style="display:none;">
-<button class="back-btn" onclick="document.getElementById('hskMapPage').style.display='none'; document.getElementById('homePage').style.display='block'; showHomeDecorations(); loadBadges();">← Back</button>
-  <h1 id="hskMapTitle" style="font-size: 32px; margin-bottom: 40px; color: #8B0000;">HSK 1</h1>
-  
-  <div class="hsk-path-container">
-    <svg class="path-svg" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid meet">
-      <line x1="100" y1="100" x2="300" y2="180" class="path-line" stroke-dasharray="5,5"/>
-      <line x1="300" y1="180" x2="100" y2="300" class="path-line" stroke-dasharray="5,5"/>
-      <line x1="100" y1="300" x2="200" y2="450" class="path-line" stroke-dasharray="5,5"/>
-    </svg>
-    
-    <div class="step-circle step-1" onclick="openStepWelcome(1)">
-      <div class="circle-content">
-        <span class="step-emoji">🌳</span>
-        <div class="step-label">Step 1</div>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div style="position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding-right: 12rem;">
+    <div>
+      <p class="hero-eyebrow">Information Systems · Product Thinking · UX Decisions · Application Logic Design</p>
+      <h1 class="hero-name">Giveniey<br><em>Amabelle</em></h1>
+      <p class="hero-desc">
+        Translating user needs into elegant digital experiences — through system analysis, feature planning, and application logic design. Currently studying at BINUS University with a 3.96 GPA.
+      </p>
+      <div class="hero-actions">
+        <a href="./CVGiveniey.pdf" download class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+        <a href="#projects" class="btn-ghost">
+          View Projects
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
     </div>
-    
-    <div class="step-circle step-2" onclick="openStepWelcome(2)">
-      <div class="circle-content">
-        <span class="step-emoji">🔒</span>
-        <div class="step-label">Step 2</div>
+
+    <!-- FOTO PROFIL -->
+    <div style="flex-shrink:0; margin-left:0; margin-right:0; opacity:0; animation:fadeUp 1s ease 0.9s forwards; position:relative;">
+      <!-- Outer decorative ring -->
+      <div style="position:absolute; inset:-12px; border-radius:50%; border:1px solid rgba(192,57,43,0.2); pointer-events:none;"></div>
+      <!-- Rotating dashed ring -->
+      <div style="position:absolute; inset:-24px; border-radius:50%; border:1px dashed rgba(192,57,43,0.15); pointer-events:none; animation:spin 20s linear infinite;"></div>
+      <!-- Photo circle -->
+      <div style="width:420px; height:420px; border-radius:50%; border:1.5px solid rgba(192,57,43,0.5); box-shadow:0 0 60px rgba(192,57,43,0.2), inset 0 0 40px rgba(0,0,0,0.4); overflow:hidden; background:var(--bg3); position:relative;">
+        <img src="./profile.jpeg" alt="Giveniey Amabelle"
+          style="width:100%; height:100%; object-fit:cover; display:block;"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <!-- Fallback initials if photo not found -->
+        <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; flex-direction:column; gap:8px;">
+          <div style="font-family:'DM Serif Display',serif; font-size:5rem; color:var(--red-bright); line-height:1; opacity:0.9;">GA</div>
+          <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--text-muted); letter-spacing:0.2em; text-transform:uppercase;">Giveniey Amabelle</div>
+        </div>
+      </div>
+      <!-- Label badge -->
+      <div style="position:absolute; bottom:16px; right:-12px; background:var(--bg2); border:1px solid var(--border-red); padding:8px 16px; font-family:'DM Mono',monospace; font-size:10px; color:var(--red-bright); letter-spacing:0.12em; text-transform:uppercase; white-space:nowrap;">
+        BINUS · IS · 3.96 GPA
       </div>
     </div>
-    
-    <div class="step-circle step-3" onclick="openStepWelcome(3)">
-      <div class="circle-content">
-        <span class="step-emoji">🔒</span>
-        <div class="step-label">Step 3</div>
+
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="section-label">About me</div>
+      <h2 class="about-heading">Ideas that become<br><em>real</em> products</h2>
+      <p class="about-text">
+        3rd-year Information Systems student at Bina Nusantara University with a strong foundation in system analysis, UX decisions, and feature planning. I bridge the gap between user needs and working digital solutions.
+      </p>
+      <p class="about-text">
+        Trilingual in Indonesian, English, and Mandarin Chinese (HSK 4–5) — bringing an extra dimension to cross-cultural product work. I've shipped real apps, written BRDs, built UML diagrams, and represented brands on stage.
+      </p>
+      <div class="skills-list">
+        <span class="skill-tag">HTML / CSS / JS</span>
+        <span class="skill-tag">Flutter</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">UML</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">System Analysis</span>
+        <span class="skill-tag">BRD Writing</span>
+        <span class="skill-tag">Draw.io</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">Mandarin HSK 4–5</span>
       </div>
     </div>
-    
-    <div class="step-circle step-4" onclick="openStepWelcome(4)">
-      <div class="circle-content">
-        <span class="step-emoji">🔒</span>
-        <div class="step-label">Step 4</div>
+    <div class="reveal" style="transition-delay: 0.15s;">
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-number">3.96</div>
+          <div class="stat-label">GPA at BINUS</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Roles & Internships</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Apps Shipped</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Languages Spoken</div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Badge section -->
- <div id="hskBadgeSection" style="display:none; margin-top:20px; text-align:center;">
-  <div class="badge-wrapper" style="justify-content:center;">
-    <div class="badge-circle badge-hsk-dynamic">
-      <span class="badge-icon">🎓</span>
-      <span class="badge-text">HSK</span>
-      <span id="hskBadgeStars" class="badge-stars">★</span>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label reveal">Work History</div>
+  <h2 class="exp-heading reveal">Where I've <em>contributed</em></h2>
+  <p class="exp-sub reveal">Hands-on experience across tech, business, and creative fields.</p>
+
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-header">
+        <div class="exp-role">Mandarin Tutor</div>
+        <div class="exp-period">Dec 2025 — Present</div>
+      </div>
+      <div class="exp-company">Nihao Beijing Course</div>
+      <ul class="exp-bullets">
+        <li>Taught Mandarin to 50+ students across multiple proficiency levels</li>
+        <li>Advised 100+ learners on appropriate learning paths and course selection</li>
+        <li>Managed student enrollment flow and supported social media engagement</li>
+      </ul>
+    </div>
+
+    <div class="exp-item reveal" style="transition-delay: 0.05s;">
+      <div class="exp-header">
+        <div class="exp-role">Business Development Intern</div>
+        <div class="exp-period">Feb 2025 — May 2025</div>
+      </div>
+      <div class="exp-company">Bang Jamin</div>
+      <ul class="exp-bullets">
+        <li>Developed 5+ business process flowcharts to map system workflows</li>
+        <li>Created 3+ Business Requirement Documents (BRD) defining system objectives and functional requirements</li>
+        <li>Designed 4+ UML class diagrams to model system architecture</li>
+        <li>Built 5+ UI/UX wireframes to enhance user experience and usability</li>
+      </ul>
+    </div>
+
+    <div class="exp-item reveal" style="transition-delay: 0.1s;">
+      <div class="exp-header">
+        <div class="exp-role">IT Support Intern</div>
+        <div class="exp-period">Jun 2024 — Sep 2024</div>
+      </div>
+      <div class="exp-company">Blibli</div>
+      <ul class="exp-bullets">
+        <li>Monitored 20+ CCTV systems and generated weekly security reports</li>
+        <li>Performed troubleshooting for hardware and software issues across store systems</li>
+        <li>Conducted preventive maintenance to ensure system reliability</li>
+        <li>Managed internet billing records and ensured timely updates</li>
+      </ul>
+    </div>
+
+    <div class="exp-item reveal" style="transition-delay: 0.15s;">
+      <div class="exp-header">
+        <div class="exp-role">Brand Ambassador</div>
+        <div class="exp-period">Feb 2022 — Feb 2026</div>
+      </div>
+      <div class="exp-company">GEEKFAM Indonesia</div>
+      <ul class="exp-bullets">
+        <li>Represented the e-sports team as a speaker at events and promotional campaigns</li>
+        <li>Collaborated on content creation, branding initiatives, and photoshoot projects</li>
+        <li>Supported community outreach and gaming-related digital content creation</li>
+      </ul>
+    </div>
+
+    <div class="exp-item reveal" style="transition-delay: 0.2s;">
+      <div class="exp-header">
+        <div class="exp-role">Admin Purchasing Intern</div>
+        <div class="exp-period">May 2023 — Jun 2023</div>
+      </div>
+      <div class="exp-company">Lippo Mall Indonesia</div>
+      <ul class="exp-bullets">
+        <li>Prepared 10+ Work Order Letters (SPK) for procurement processes</li>
+        <li>Conducted vendor price comparisons to support cost-efficient decisions</li>
+        <li>Documented key discussions in 10+ vendor meetings</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label reveal">Selected Work</div>
+  <h2 class="projects-heading reveal">Projects I've <em>built</em></h2>
+  <p class="projects-sub reveal">Apps designed from real problems — built with user engagement and clean logic in mind.</p>
+
+  <div class="projects-grid">
+    <!-- EZ Mandarin -->
+    <a href="https://ez-mandarin.vercel.app" target="_blank" class="project-card reveal">
+      <div class="project-number">01</div>
+      <div class="project-icon">
+  <img src="./EZMANDARIN.png" alt="EZ Mandarin" style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+</div>
+      <div class="project-title">EZ Mandarin APP</div>
+      <p class="project-desc">Developed from my experience as a Mandarin tutor, where I noticed that textbook-based learning often reduced student engagement. The app introduces flashcards, quizzes, and structured learning paths to create a more interactive and motivating learning experience.</p>
+      <div class="project-tags">
+        <span class="project-tag">HTML</span>
+        <span class="project-tag">CSS</span>
+        <span class="project-tag">JavaScript</span>
+        <span class="project-tag">UX Design</span>
+      </div>
+      <div class="project-link">
+        View Project <span class="project-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- SpenD -->
+    <a href="https://spendbykwek.netlify.app/" target="_blank" class="project-card reveal" style="transition-delay: 0.1s;">
+      <div class="project-number">02</div>
+      <div class="project-icon">
+  <img src="./Spendicon.png" alt="SpenD" style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+</div>
+      <div class="project-title">SpenD APP</div>
+      <p class="project-desc">Budget tracking mobile app for recording and monitoring monthly expenses. Created after realizing how difficult it was to consistently track personal spending as a student. Designed with a simplified budgeting flow and intuitive interface to help young users build better financial habits without the complexity of traditional finance apps.</p>
+      <div class="project-tags">
+        <span class="project-tag">Flutter</span>
+        <span class="project-tag">Budget Logic</span>
+        <span class="project-tag">UX Decisions</span>
+        <span class="project-tag">Feature Planning</span>
+      </div>
+      <div class="project-link">
+        View Project <span class="project-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Portfolio Web -->
+    <a href="#" target="_blank" class="project-card reveal" style="transition-delay: 0.2s;">
+      <div class="project-number">03</div>
+      <div class="project-icon">🌐</div>
+      <div class="project-title">Portfolio Website</div>
+      <p class="project-desc">Personal portfolio website showcasing projects, technical growth, and professional identity. Designed with a dark editorial aesthetic and attention to animation and detail.</p>
+      <div class="project-tags">
+        <span class="project-tag">HTML</span>
+        <span class="project-tag">CSS</span>
+        <span class="project-tag">JavaScript</span>
+        <span class="project-tag">UI Design</span>
+      </div>
+      <div class="project-link">
+        VIEW PROJECT <span class="project-arrow">→</span>
+      </div>
+    </a>
+  </div>
+
+  <div style="margin-top: 3rem;">
+    <a href="./Portofolio.pdf" download class="btn-primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Portfolio PDF
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label reveal">Get in touch</div>
+    <h2 class="contact-heading reveal">Let's build<br>something <em>great</em></h2>
+    <p class="contact-text reveal">
+      Open to internships, collaborations, and new opportunities. Reach out through any of the channels below.
+    </p>
+    <div class="contact-links reveal">
+      <a href="https://mail.google.com/mail/?view=cm&to=gipnii.belle@gmail.com" target="_blank" class="contact-item">
+        <div class="contact-item-left">
+          <div class="contact-item-icon">✉</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">gipnii.belle@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-arrow">→</div>
+      </a>
+      <a href="https://www.linkedin.com/in/giveniey-amabelle-b49842305/" target="_blank" class="contact-item">
+        <div class="contact-item-left">
+          <div class="contact-item-icon" style="font-size:13px; font-weight:700;">in</div>
+          <div>
+            <div class="contact-item-label">LinkedIn</div>
+            <div class="contact-item-value">linkedin.com/in/giveniey-amabelle</div>
+          </div>
+        </div>
+        <div class="contact-arrow">→</div>
+      </a>
+      <a href="https://wa.me/6285715770675" target="_blank" class="contact-item">
+  <div class="contact-item-left">
+    <div class="contact-item-icon">☏</div>
+    <div>
+      <div class="contact-item-label">WhatsApp</div>
+      <div class="contact-item-value">+62 857-1577-0675</div>
     </div>
   </div>
-  <span id="hskBadgeLabel" class="badge-name" style="display:block; margin-top:8px;">HSK 1</span>
-  <p style="color:#c9a84c; font-weight:bold; margin-top:6px; font-size:14px;">Level Completed! ✓</p>
-</div> 
-</div> 
-
-<!-- 🟨 STEP WELCOME PAGE -->
-<div id="stepWelcomePage" style="display:none;">
-  <button class="back-btn" onclick="backToHskMap()">← Back</button>
-  <h1 id="stepWelcomeTitle" style="font-size: 80px; margin-bottom: 30px; color: #ffffff;">HSK 1</h1>
-  
-  <div class="welcome-container">
-    <img class="welcome-illustration" src="https://cdn-icons-png.flaticon.com/128/5341/5341224.png" alt="Garden illustration" style="width: 200px; height: 200px; animation: float 3s ease-in-out infinite;" />
-    <div class="welcome-text" style="font-size: 30px; font-weight: bold; color: #ffffff; margin: 20px 0; animation: fadeInScale 0.6s ease-out;">Welcome to Step 1!</div>
-    <button class="start-button" onclick="goToStepChoice()" style="font-size: 22px; padding: 14px 50px; animation: pulse 2s ease-in-out infinite;">START</button>
-  </div>
-</div> 
-
-<!-- 🟨 FLASHCARD -->
-
-<div id="flashcardPage" style="display:none;">
-  <button id="closeBtn" onclick="document.getElementById('flashcardPage').style.display='none'; if(flashcardOrigin === 'step') { document.getElementById('stepChoicePage').style.display='block'; } else { document.getElementById('flashcardMenuPage').style.display='block'; }">×</button>
-  <img id="cardImage" src="">
-  <h2 id="hanzi"></h2>
-  <button id="speakerBtn" onclick="speakHanzi()">🔊</button>
-  <p id="pinyin"></p>
-  <p id="arti"></p>
-
-  <div class="button-container" id="flashcardButtons"></div>
-</div>
-
-<!-- 🟥 QUIZ LEVEL SELECT -->
-
-<div id="quizPage" style="display:none;">
-  <h2>WHAT’S YOUR LEVEL?</h2>
-
-  <div class="button-container">
-    <button onclick="showQuizCountdown('hsk1')">HSK 1</button>
-    <button onclick="showQuizCountdown('hsk2')">HSK 2</button>
-    <button onclick="showQuizCountdown('hsk3')">HSK 3</button>
-    <button onclick="showQuizCountdown('hsk4')">HSK 4</button>
-    <button onclick="showQuizCountdown('hsk5')">HSK 5</button>
-  </div>
-
-  <br>
-  <button onclick="goHome()">Back to Home</button>
-</div>
-
-<!-- 🧠 QUIZ QUESTION -->
-<div id="quizQuestionPage" style="display:none;">
-  <h2 id="timerText">Time: 00:00</h2>
-
-  <!-- 🔥 PROGRESS -->
-  <h3 id="progressText"></h3>
-  <div id="progressBarContainer">
-    <div id="progressBar"></div>
-  </div>
-
-  <h3 id="questionText"></h3>
-  <div id="options"></div>
-
-  <div class="button-container" id="quizButtons"></div>
-</div>
-<!-- 🟨 CONFIRM SUBMIT -->
-
-<div id="confirmPage" style="display:none;">
-  <h2>Are you sure you want to submit?</h2>
-
-  <div class="button-container">
-    <button onclick="backToQuiz()">Check Again</button>
-    <button onclick="submitQuiz()">Submit</button>
-  </div>
-</div>
-
-<!-- 🟩 RESULT -->
-<div id="resultPage" style="display:none;">
-  <h2>Your Score</h2>
-  <h1 id="scoreText"></h1>
-
-  <div class="button-container">
-    <button onclick="showReview()">See Review</button>
-    <button id="resultSecondBtn" onclick="goHome()">Back to Home</button>
-  </div>
-</div>
-
-<!-- 🟪 REVIEW -->
-
-<div id="reviewPage" style="display:none;">
-  <h2>Review Answers</h2>
-
-  <div id="reviewContainer"></div>
-
-  <br>
-  <button onclick="goHome()">Back to Home</button>
-</div>
-
-<div id="countdownOverlay" style="display:none;">
-  <div class="countdown-box">
-    <p>Are you ready?</p>
-    <div id="countdownNumber">3</div>
-  </div>
-</div>
-
-
-<!-- 🎉 CONFETTI LIBRARY -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-<div id="stepChoicePage" style="display:none;">
-  <button class="back-btn" onclick="backToStepWelcome()">← Back</button>
-  <h1 id="stepChoiceTitle" style="font-size: 32px; margin-bottom: 10px; color: #f5f5f5;">HSK 1</h1>
-  <img class="step-thumb" src="https://cdn-icons-png.flaticon.com/128/5341/5341224.png" style="width: 80px; margin-bottom: 20px;">
-  
-<div class="choice-container" id="choiceContainer">
-  <button class="choice-btn vocab-btn" onclick="goToVocabulary()">
-    📖<br>Vocabulary
-  </button>
-  <button class="choice-btn grammar-btn" id="grammarBtn" onclick="goToGrammar()">
-    📝<br>Grammar
-  </button>
-  <button class="choice-btn exam-btn" onclick="goToExam()">
-    ✏️<br>Do Exam
-    <div style="font-size: 11px; margin-top: 4px; opacity: 0.85;">*to unlock next step</div>
-  </button>
-</div>
-</div>
-
-  <div id="examReadyPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
-  <div style="background:white; border-radius:20px; padding:40px; text-align:center; max-width:300px; width:90%;">
-    <h2 style="color:#8B0000; margin-bottom:10px;">Are You Ready? 💪</h2>
-    <p style="color:#555; margin-bottom:25px;">Skor minimal 70 untuk unlock step berikutnya!</p>
-    <div style="display:flex; gap:12px; justify-content:center;">
-      <button onclick="closeExamPopup()" style="background:#ddd; color:#333; padding:12px 24px; border-radius:12px; border:none; font-weight:bold; cursor:pointer;">Learn Again</button>
-      <button onclick="startExamFromPopup()" style="background:linear-gradient(135deg,#c9a84c,#e8c96a); color:#4a2c00; padding:12px 24px; border-radius:12px; border:none; font-weight:bold; cursor:pointer;">YES! 🔥</button>
+  <div class="contact-arrow">→</div>
+</a>
     </div>
   </div>
-</div>  
+</section>
 
-<div id="grammarPage" style="display:none;">
-  <button class="back-btn" onclick="closeGrammar()">← Back</button>
-  <h1 id="grammarPageTitle" style="color:#ffffff; font-size:24px; margin-bottom:20px;">HSK 1 — Grammar</h1>
-  
-  <div class="grammar-card">
-    <div class="grammar-number" id="grammarNumber">1 / 10</div>
-    <h2 class="grammar-title" id="grammarTitle"></h2>
-    <p class="grammar-pinyin" id="grammarPinyin"></p>
-    <p class="grammar-meaning" id="grammarMeaning"></p>
-    <div class="grammar-structure" id="grammarStructure"></div>
-    <div class="grammar-example">
-      <div id="grammarChinese" class="grammar-chinese"></div>
-      <div id="grammarRomanized" class="grammar-romanized"></div>
-      <div id="grammarTranslation" class="grammar-translation"></div>
-    </div>
-  </div>  
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 — Giveniey Amabelle Hidayat. All rights reserved.</p>
+  <div class="footer-dot"></div>
+  <p>Information Systems · BINUS University</p>
+</footer>
 
-  <div class="button-container" id="grammarButtons"></div>
-</div>
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
 
-<div id="graduationPage" style="display:none;">
-  <div class="graduation-container">
-    <div class="grad-emoji">🏆</div>
-    <h1 id="gradTitle" style="color:#8B0000; font-size:28px;">Congratulations!</h1>
-    <h2 id="gradLevel" style="color:#c9a84c; font-size:22px;">You have passed HSK 1!</h2>
-   <div class="badge-wrapper" style="justify-content:center; margin: 16px 0;">
-  <div id="gradBadgeCircle" class="badge-circle badge-hsk1" style="width:100px; height:100px;">
-    <span class="badge-icon">🎓</span>
-    <span class="badge-text">HSK</span>
-    <span id="gradBadgeStars" class="badge-stars">★</span>
-  </div>
-</div>
-<span id="badgeLevel" class="badge-name" style="display:block; text-align:center;">HSK 1</span>
-<p style="color:#c9a84c; font-weight:bold; font-size:13px; text-align:center; margin-top:4px;">Completed! ✓</p>
-    <p id="gradDesc" style="color:#555; font-size:14px; margin-top:16px; padding: 0 20px;">You have mastered all the vocabulary, grammar, and HSK 1 materials. Moving on to HSK 2? 💪</p>
-    <button onclick="closeGraduation()" style="margin-top:20px; font-size:16px; padding: 14px 30px;">Lihat Progress 🗺️</button>
-  </div>
-</div>
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx - 5 + 'px';
+    cursor.style.top = my - 5 + 'px';
+  });
 
-<script src="script.js"></script>
+  function animateRing() {
+    rx += (mx - rx - 16) * 0.12;
+    ry += (my - ry - 16) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'scale(2.5)';
+      ring.style.width = '48px';
+      ring.style.height = '48px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'scale(1)';
+      ring.style.width = '32px';
+      ring.style.height = '32px';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
 </body>
 </html>
